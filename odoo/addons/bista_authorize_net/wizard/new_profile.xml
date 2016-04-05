@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_new_profile" model="ir.ui.view">
+          <field name="name">view.new.profile</field>
+          <field name="model">customer.profile.payment</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+              <form string="New Customer Profile" version="7.0">
+                  <group col="4" colspan="4">
+<!--                      <field name="billing_addr" domain="[('partner_id','=',partner_id)]"/>-->
+                      <field name="partner_id" invisible="1"/>
+                      <field name="auth_cc_number"  on_change="onchange_cc_number(auth_cc_number)"/>
+                      <field name="auth_cc_expiration_date"/>
+                      <field name="transaction_type" required="1"/>
+                      <field name="charge_amount"/>
+                      </group>
+<!--                      <separator string="Shipping Option"/>-->
+                  <group col="4" colspan="4">
+<!--                  <field name="shipping_add_info"/>
+                  <field name="shipping_addr"/>-->
+                  </group>
+<!--                      <button name="charge_customer" string="Charge Customer" type="object" icon="gtk-ok"/>-->
+                      <button name="charge_customer" string="Authorize" type="object" icon="gtk-ok"/>
+              </form>
+          </field>
+       </record>
+
+        <record id="action_new_profile" model="ir.actions.act_window">
+            <field name="name">New Customer Profile</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">customer.profile.payment</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_new_profile"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

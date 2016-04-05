@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <!-- Add Set to draft button to Sales Order form view -->
+<<<<<<< .mine
+<!--        <record id="view_sale_order_form_mmh" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+
+                <button name="copy_quotation" position="after">
+                    <button name="action_cancel_draft" states="cancel" string="Set to Draft" type="object" />
+                </button>
+                <xpath expr="//field[@name='partner_invoice_id']" position="attributes">
+                    <attribute name="domain">"['|',('parent_id','=',partner_id),('id','=',partner_id)]"</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                    <attribute name="domain">"['|',('parent_id','=',partner_id),('id','=',partner_id)]"</attribute>
+                </xpath>
+           </field>
+        </record>-->
+=======
+>>>>>>> .r5872
+         <!-- Add Set to draft button to Sales Order form view -->
+        <record id="view_sale_order_form_mmh_sale_stock" model="ir.ui.view">
+            <field name="name">view.sale.order.form.mmh.sale.stock</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='shop_id']" position="replace">
+                    <field name="shop_id" groups="base.group_no_one" on_change="onchange_shop_id(shop_id, pricelist_id)" widget="selection"/>
+               </xpath>
+
+           </field>
+        </record>
+
+        <record id="view_order_tree_inherit_mmh" model="ir.ui.view">
+            <field name="name">view.order.tree.inherit.mmh</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+               <field name="partner_id" position="after">
+                    <field name="mmh_class"/>
+                    <field name="mmh_disc_code"/>
+               </field>
+           </field>
+        </record>
+
+        
+         <record id="view_order_form_mmh1" model="ir.ui.view">
+            <field name="name">view.order.form.mmh1</field>
+            <field name="model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+<<<<<<< .mine
+                
+                <button name="copy_quotation" position="after">
+                    <button name="action_cancel_draft" states="cancel" string="Set to Draft" type="object" />
+                </button>
+=======
+                <button name="copy_quotation" position="after">
+                    <button name="action_cancel_draft" states="cancel" string="Set to Draft" type="object" />
+                </button>
+>>>>>>> .r5872
+               <xpath expr="//field[@name='partner_invoice_id']" position="replace">
+<<<<<<< .mine
+                   <field name="partner_invoice_id" domain="['|',('parent_id','=',partner_id),('id','=',partner_id)]" options="{'create': false,  'create_edit': false}" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}"/>
+=======
+                   <field name="partner_invoice_id"  domain="['|',('parent_id','=',partner_id),('id','=',partner_id)]" options="{'create': false,  'create_edit': false}"  groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}"/>
+>>>>>>> .r5872
+               </xpath>
+               <xpath expr="//field[@name='partner_id']" position="replace">
+                   <field name="partner_id"  options="{'create': false,  'create_edit': false, 'always_reload': True}" on_change="onchange_partner_id(partner_id, context)" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}"/>
+               </xpath>
+               <xpath expr="//field[@name='partner_shipping_id']" position="replace">
+<<<<<<< .mine
+                   <field name="partner_shipping_id"  domain="['|',('parent_id','=',partner_id),('id','=',partner_id)]" options="{'create': false,  'create_edit': false}" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}"/>
+=======
+                   <field name="partner_shipping_id" domain="['|',('parent_id','=',partner_id),('id','=',partner_id)]" options="{'create': false,  'create_edit': false}" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}"/>
+>>>>>>> .r5872
+               </xpath>
+                <xpath expr="//field[@name='project_id']" position="replace">
+                   <field name="project_id"  options="{'create': false,  'create_edit': false}" context="{'partner_id':partner_invoice_id, 'default_pricelist_id':pricelist_id, 'default_name':name, 'default_type': 'contract'}" groups="sale.group_analytic_accounting" domain="[('type','in',['view','normal','contract'])]"/>
+               </xpath>
+               <xpath expr="//field[@name='shop_id']" position="replace">
+                   <field name="shop_id"  options="{'create': false,  'create_edit': false}" domain="[('type','=','other')]" groups="base.group_no_one" on_change="onchange_shop_id(shop_id, context)"/>
+               </xpath>
+               <xpath expr="//field[@name='pricelist_id']" position="replace">
+                   <field name="pricelist_id"  domain="[('type','=','sale')]" options="{'create': false,  'create_edit': false}" groups="product.group_sale_pricelist" on_change="onchange_pricelist_id(pricelist_id,order_line)"/>
+               </xpath>
+               <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="replace">
+                   <field name="product_id" options="{'create': false,  'create_edit': false}" groups="base.group_user"  on_change="product_id_change(parent.pricelist_id, product_id, product_uom_qty, False, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, False, parent.fiscal_position, False, context)"/>
+               </xpath>
+               <xpath expr="//field[@name='order_line']/form/group/group/field[@name='address_allotment_id']" position="replace">
+                   <field name="address_allotment_id" options="{'create': false,  'create_edit': false}"/>
+               </xpath>
+
+              <!-- <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_uom']" position="replace">
+                   <field name="product_uom" options="{'create': false,  'create_edit': false}"/>
+               </xpath>-->
+               <xpath expr="//page[@string='Other Information']/group/group/field[@name='user_id']" position="replace">
+                   <field name="user_id" options="{'create': false,  'create_edit': false}" groups="base.group_user"/>
+               </xpath>
+                <xpath expr="//page[@string='Other Information']/group/group/field[@name='payment_term']" position="replace">
+                   <field name="payment_term" options="{'create': false,  'create_edit': false}" widget="selection"/>
+               </xpath>
+               <xpath expr="//page[@string='Other Information']/group/group/field[@name='fiscal_position']" position="replace">
+                   <field name="fiscal_position" options="{'create': false,  'create_edit': false}" widget="selection"/>
+               </xpath>
+           </field>
+        </record>
+  </data>
+</openerp>

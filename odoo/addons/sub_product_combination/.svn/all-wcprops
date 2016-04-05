@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/coax_cox/!svn/ver/344/sub_product_combination
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/coax_cox/!svn/ver/101/sub_product_combination/__init__.py
+END
+product.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/coax_cox/!svn/ver/101/sub_product_combination/product.py
+END
+product_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/coax_cox/!svn/ver/68/sub_product_combination/product_view.xml
+END
+stock.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/coax_cox/!svn/ver/125/sub_product_combination/stock.py
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/coax_cox/!svn/ver/101/sub_product_combination/__openerp__.py
+END
+sale.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/coax_cox/!svn/ver/344/sub_product_combination/sale.py
+END
+stock_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/coax_cox/!svn/ver/101/sub_product_combination/stock_view.xml
+END
+sale_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/coax_cox/!svn/ver/107/sub_product_combination/sale_view.xml
+END

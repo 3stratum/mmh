@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/bista/!svn/ver/5884/MMH/code/bista_mmh
+END
+stock_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/bista/!svn/ver/5870/MMH/code/bista_mmh/stock_view.xml
+END
+sale_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/bista/!svn/ver/5870/MMH/code/bista_mmh/sale_view.xml
+END
+res_partner_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/bista/!svn/ver/5735/MMH/code/bista_mmh/res_partner_view.xml
+END
+account_voucher.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/bista/!svn/ver/5799/MMH/code/bista_mmh/account_voucher.py
+END
+account_voucher_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/bista/!svn/ver/5799/MMH/code/bista_mmh/account_voucher_view.xml
+END
+account.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/bista/!svn/ver/5674/MMH/code/bista_mmh/account.py
+END
+account_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/bista/!svn/ver/5674/MMH/code/bista_mmh/account_view.xml
+END
+account_report.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/bista/!svn/ver/5693/MMH/code/bista_mmh/account_report.xml
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/bista/!svn/ver/5799/MMH/code/bista_mmh/__init__.py
+END
+mrp_production_old.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/bista/!svn/ver/5674/MMH/code/bista_mmh/mrp_production_old.py
+END
+procurement.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/bista/!svn/ver/5848/MMH/code/bista_mmh/procurement.py
+END
+statement.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/bista/!svn/ver/5774/MMH/code/bista_mmh/statement.py
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/bista/!svn/ver/5830/MMH/code/bista_mmh/__openerp__.py
+END
+mrp_production.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/bista/!svn/ver/5798/MMH/code/bista_mmh/mrp_production.py
+END
+mrp_production_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/bista/!svn/ver/5848/MMH/code/bista_mmh/mrp_production_view.xml
+END
+account_invoice.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/bista/!svn/ver/5869/MMH/code/bista_mmh/account_invoice.py
+END
+purchase.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/bista/!svn/ver/5848/MMH/code/bista_mmh/purchase.py
+END
+account_invoice_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/bista/!svn/ver/5881/MMH/code/bista_mmh/account_invoice_view.xml
+END
+res_country.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/bista/!svn/ver/5885/MMH/code/bista_mmh/res_country.py
+END
+purchase_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/bista/!svn/ver/5881/MMH/code/bista_mmh/purchase_view.xml
+END
+product.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/bista/!svn/ver/5708/MMH/code/bista_mmh/product.py
+END
+product_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/bista/!svn/ver/5738/MMH/code/bista_mmh/product_view.xml
+END
+stock.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/bista/!svn/ver/5881/MMH/code/bista_mmh/stock.py
+END
+sale.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/bista/!svn/ver/5870/MMH/code/bista_mmh/sale.py
+END
+res_partner.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/bista/!svn/ver/5798/MMH/code/bista_mmh/res_partner.py
+END

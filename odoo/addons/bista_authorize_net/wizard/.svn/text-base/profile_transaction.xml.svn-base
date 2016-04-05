@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_new_profile_transaction" model="ir.ui.view">
+          <field name="name">view.new.profile.transaction</field>
+          <field name="model">profile.transaction</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+              <form string="Authorize.Net Profiles" version="7.0">
+
+                  
+                      <field name="profile_ids"/>
+                      
+              </form>
+          </field>
+       </record>
+
+        <record id="action_new_profile_transaction" model="ir.actions.act_window">
+            <field name="name">Authorize.Net Profiles</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">profile.transaction</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_new_profile_transaction"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

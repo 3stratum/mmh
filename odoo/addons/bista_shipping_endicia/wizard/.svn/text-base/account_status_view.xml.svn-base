@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--<record id="view_account_status" model="ir.ui.view">
+            <field name="name">Account Status Form</field>
+            <field name="model">account.status</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Account Status" version="7.0">
+                   <data>
+                    <label colspan="4" string="" />
+                    <group col="2" colspan="2">
+                        <button special="cancel" string="_Cancel" icon="gtk-cancel"/>
+                    </group>
+                   </data>
+                </form>
+            </field>
+        </record>-->
+
+        <act_window id="act_account_status"
+            multi="True"
+            key2="client_action_multi" name="Account Status"
+            res_model="account.status" src_model="shipping.endicia"
+            view_mode="form" target="new" view_type="form" />
+
+   </data>
+</openerp>

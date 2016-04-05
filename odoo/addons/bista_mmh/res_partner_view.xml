@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+
+                      <!--Add country to Customer Tree View-->
+        <record id="view_res_partner_tree_mmh_inherit" model="ir.ui.view">
+            <field name="name">res.partner.tree.mmh.inherit</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                
+            <xpath expr="//field[@name='name']" position="after">
+             <field name="street" />
+             <field name="street2" />
+             <field name="city" />
+             <field name="state_id" />
+             <field name="zip" />
+             <field name="country" />
+
+            </xpath>
+  
+           </field>
+        </record>
+
+		<!-- Add Set to draft button to Sales Order form view -->
+        <record id="view_partner_form_basic_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="model">res.partner</field>
+            <field name="priority" eval="30"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="/form/sheet/group/group[2]/field[@name='title']" position="after">
+                    <field name="address_valid_message" readonly="1" />
+                    <group colspan="4" >
+                       <separator string="Accounting" colspan="4"/>
+                       <field name="cust_bal_mmh" string="CustomerBalance"/>
+                    </group>
+                </xpath>
+                
+                <field name="street" position="replace">
+                    <field name="street" required="1"/>
+                </field>
+
+                <div class="address_format" position="replace">
+                    <div class="address_format">
+                        <field name="city" placeholder="City" style="width: 40%%" attrs="{'readonly': [('use_parent_address','=',True)]}" required="1"/>
+                        <field name="state_id" class="oe_no_button" placeholder="State" style="width: 37%%" options='{"no_open": True}'
+                        on_change="onchange_state(state_id)" attrs="{'readonly': [('use_parent_address','=',True)]}" required="1"/>
+                        <field name="zip" placeholder="ZIP" style="width: 20%%" attrs="{'readonly': [('use_parent_address','=',True)]}" required="1"/>
+                    </div>
+                </div>
+<!--                <field name="country_id" position="after">
+                    <button name="taxcloud_address_validate" type="object" string="Verify Address" class="oe_highlight" />
+                </field>-->
+                <xpath expr="//div[@name='buttons']/button[@string='Quotations and Sales']" position="replace">
+                    <button name="view_sales" type="object"
+                        string="Quotations and Sales"
+                        attrs="{'invisible': [('customer', '=', False)]}"
+                        groups="base.group_sale_salesman"/>
+
+                    <!--    <button name="update_customers" type="object"
+                        string="Update Customers"
+                        attrs="{'invisible': [('customer', '=', False)]}"
+                        />  -->
+
+                </xpath>
+                <!--Adding a new fiels customer balance in form view of customer-->
+<!--                     <xpath expr="/form/sheet/group/group[1]/field[@name='website']" position="after">
+                       <group colspan="4" >
+                            <separator string="Accounting" colspan="4"/>
+                        <field name="cust_bal_mmh" string="CustomerBalance"/>
+                       </group>
+                    </xpath>-->
+                    <!--Replacing page Internal Notes-->
+                     <xpath expr="/form/sheet/notebook/page[@string='Internal Notes']" position="replace">
+                    </xpath>
+                    <!--Adding Internal Notes page before Contacts Tab-->
+                     <xpath expr="/form/sheet/notebook/page[@string='Contacts']" position="before">
+                       <page string="Internal Notes">
+                            <field name="comment" placeholder="Put an internal note..."/>
+                        </page>
+                    </xpath>
+           </field>
+
+        </record>
+
+        <record id="view_res_partner_filter_mmh" model="ir.ui.view">
+            <field name="name">view.res.partner.filter.mmh</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                 <field name="name" position="after">
+                     <field name="street" filter_domain="[('street','ilike', self)]"/>
+                     <field name="street2" filter_domain="[('street2','ilike', self)]"/>
+                     <field name="city" filter_domain="[('city','ilike', self)]"/>
+                     <field name="state_id" filter_domain="[('state_id','ilike', self)]"/>
+                     <field name="zip" filter_domain="[('zip','ilike', self)]"/>
+                     <field name="country_id" filter_domain="[('country_id','ilike', self)]"/>
+                 </field>
+           </field>
+        </record>
+
+
+	</data>
+</openerp>

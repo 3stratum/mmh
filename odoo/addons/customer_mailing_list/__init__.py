@@ -1,0 +1,1 @@
+import customer_mailing_list

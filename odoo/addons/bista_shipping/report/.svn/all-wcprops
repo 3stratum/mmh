@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/report
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/report/__init__.py
+END
+ups_label_report.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/report/ups_label_report.py
+END
+ups_label_report.rml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/report/ups_label_report.rml
+END
+usps_label_report.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/report/usps_label_report.py
+END
+fedex_label_report.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/report/fedex_label_report.py
+END
+openerp-server.log
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/report/openerp-server.log
+END
+usps_label_report.rml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/report/usps_label_report.rml
+END
+fedex_label_report.rml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/report/fedex_label_report.rml
+END

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_show_receiveables_payables" model="ir.ui.view">
+            <field name="name">view.show.receiveables.payables</field>
+            <field name="model">balance.receivable.payable</field>
+            <field name="arch" type="xml">
+                <form string="Balances/Outstanding Transactions" version="7.0">
+                    <group>
+                        <field name="line_ids" colspan="4" domain="[('account_id.type','in',['receivable','payable']),('reconcile_id','=',False), ('reconcile_partial_id','=',False), ('state', '=', 'valid')]">
+                            <tree>
+                                <field name="journal_id" options='{"no_open":True}' invisible="context.get('journal_id',False)"/>
+                                <field name="period_id" options='{"no_open":True}' invisible="context.get('period_id',False)"/>
+                                <field name="date"/>
+                                <field name="name"/>
+                                <field name="ref"/>
+                                <field name="statement_id" invisible="1"/>
+                                <field name="partner_id" on_change="onchange_partner_id(move_id, partner_id, account_id, debit, credit, date, journal_id)"/>
+                                <field name="account_id" options='{"no_open":True}' domain="[('journal_id','=',journal_id), ('company_id', '=', company_id)]" on_change="onchange_account_id(account_id, partner_id, context)"/>
+                                <field name="account_tax_id" options='{"no_open":True}' invisible="context.get('journal_type', False) not in ['sale','sale_refund','purchase','purchase_refund','general']"/>
+                                <field name="analytic_account_id" groups="analytic.group_analytic_accounting" domain="[('type','not in',['view','template'])]" invisible="not context.get('analytic_journal_id',False)"/>
+                                <field name="move_id" required="0"/>
+                                <field name="debit" sum="Total Debit"/>
+                                <field name="credit" sum="Total Credit"/>
+                                <field name="date_maturity" invisible="context.get('journal_type', False) not in ['sale','sale_refund','purchase','purchase_refund']"/>
+                                <field name="reconcile"/>
+                                <field name="invoice" invisible="1"/>
+                                <field name="amount" string="Allocation amt"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="assign_balances" string="Assign" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_show_receiveables_payables" model="ir.actions.act_window">
+            <field name="name">Show Balances</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">balance.receivable.payable</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

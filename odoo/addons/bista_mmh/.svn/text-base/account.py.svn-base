@@ -1,0 +1,36 @@
+from openerp import tools
+from openerp import netsvc
+from openerp.osv import fields, osv
+import openerp.addons.decimal_precision as dp
+from openerp.tools.translate import _
+from openerp.tools import float_compare
+from openerp.report import report_sxw
+
+class account_move(osv.osv):
+
+    _inherit = 'account.move'
+
+
+    _columns = {
+          'product_id': fields.many2one('product.product', 'Product1')
+    }
+account_move()
+
+class account_move_line(osv.osv):
+
+    _inherit = 'account.move.line'
+
+    _columns = {
+        'amount': fields.float('Amount', digits_compute=dp.get_precision('Account')),
+
+    }
+
+    def on_write(self, cr, uid, id, context=None):
+        if not id:
+            return []
+        ml = self.browse(cr, uid, id, context=context)
+        return [id]
+
+account_move_line()
+
+

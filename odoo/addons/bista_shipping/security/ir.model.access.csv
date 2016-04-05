@@ -1,0 +1,29 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_shipping_ups_group_stock_manager","shipping_ups group_stock_manager","model_shipping_ups","stock.group_stock_manager",1,1,1,1
+"access_shipping_usps_group_stock_manager","shipping_usps group_stock_manager","model_shipping_usps","stock.group_stock_manager",1,1,1,1
+"access_shipping_fedex_group_stock_manager","shipping_fedex group_stock_manager","model_shipping_fedex","stock.group_stock_manager",1,1,1,1
+"access_shipping_response_group_stock_manager","shipping_response group_stock_manager","model_shipping_response","stock.group_stock_manager",1,1,1,1
+"access1_shipping_manager_group","shipping_manager_group1","model_shipping_method","grp_shipping_manager",1,1,1,1
+"access2_shipping_manager_group","shipping_manager_group2","model_shipping_usps","grp_shipping_manager",1,1,1,1
+"access3_shipping_manager_group","shipping_manager_group3","model_shipping_fedex","grp_shipping_manager",1,1,1,1
+"access4_shipping_manager_group","shipping_manager_group4","model_shipping_ups","grp_shipping_manager",1,1,1,1
+"access_pack_track_manager_1","pack.track","model_pack_track","grp_shipping_manager",1,1,1,1
+"access_shipping_response_manager_1","shipping.response","model_shipping_response","grp_shipping_manager",1,1,1,1
+"access_product_category_shipping_manager_1","product.category.shipping","model_product_category_shipping","grp_shipping_manager",1,1,1,1
+"access_sale_order_shipping_manager_1","sale.order","sale.model_sale_order","grp_shipping_manager",1,1,1,1
+"access_product_product_shipping_1","product.product.shipping","model_product_product_shipping","stock.group_stock_manager",1,1,1,1
+"access_pack_track_manager_2","pack.track","model_pack_track","stock.group_stock_manager",1,1,1,1
+"access_pack_track_user","pack.track","model_pack_track","stock.group_stock_user",1,1,1,1
+"access_product_product_shipping_2","product.product.shipping","model_product_product_shipping","stock.group_stock_manager",1,1,1,1
+"access_product_product_shipping_3","product.product.shipping","model_product_product_shipping","stock.group_stock_user",1,1,1,1
+"access_shipping_response_manager_2","shipping.response","model_shipping_response","stock.group_stock_user",1,1,1,1
+"access_product_category_shipping_manager","product.category.shipping","model_product_category_shipping","stock.group_stock_user",1,1,1,1
+"access_sale_order_shipping_manager","sale.order","sale.model_sale_order","stock.group_stock_user",1,1,1,1
+"access_service_name_shipping_manager","service.name.shipping","model_service_name","grp_shipping_manager",1,1,1,1
+"access_shipping_response_portal","shipping.response","model_shipping_response","portal.group_portal",1,0,0,0
+
+"access_sys_default_shipping_manager","sys.default.shipping","model_sys_default_shipping","grp_shipping_manager",1,1,1,1
+"access_shipping_package_type_ups_manager","shipping.package.type.ups","model_shipping_package_type_ups","grp_shipping_manager",1,1,1,1
+"access_shipping_package_type_fedex_manager","shipping.package.type.fedex","model_shipping_package_type_fedex","grp_shipping_manager",1,1,1,1
+"access_package_tracking_manager","package.tracking","model_package_tracking","grp_shipping_manager",1,1,1,1
+"access_pack_track_manager","pack.track","model_pack_track","grp_shipping_manager",1,1,1,1

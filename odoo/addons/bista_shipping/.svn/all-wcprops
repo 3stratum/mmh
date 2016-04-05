@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/bista/!svn/ver/5836/MMH/code/bista_shipping
+END
+partner.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/partner.py
+END
+canada_post.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/canada_post.py
+END
+shipping_menu.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/shipping_menu.xml
+END
+partner_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/partner_view.xml
+END
+sale_order.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/bista/!svn/ver/5836/MMH/code/bista_shipping/sale_order.py
+END
+canada_shipping.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/canada_shipping.xml
+END
+product.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/product.py
+END
+shipping.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/shipping.py
+END
+shipping_data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/shipping_data.xml
+END
+product_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/product_view.xml
+END
+delivery.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/delivery.py
+END
+shipping_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/shipping_view.xml
+END
+stock.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/stock.py
+END
+sys_default_shipping.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/sys_default_shipping.py
+END
+delivery_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/delivery_view.xml
+END
+shipping_product_packaging.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/shipping_product_packaging.py
+END
+stock_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/stock_view.xml
+END
+connection_osv.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/connection_osv.py
+END
+sale_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/sale_view.xml
+END
+batch_number.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/batch_number.py
+END
+batch_number_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/batch_number_view.xml
+END
+shipping_product_package_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/shipping_product_package_view.xml
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/__init__.py
+END
+shippingservice.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/shippingservice.py
+END
+miscellaneous.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/miscellaneous.py
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/__openerp__.py
+END

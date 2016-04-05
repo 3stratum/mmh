@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_order_form_inherit_frm1" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.frm1</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                <xpath expr="/form/sheet/notebook" position="inside">
+                    <page string="Authorize.Net Payment">
+                        <!--<group colspan="4" col="4" >
+                        <separator string="Payment/Authorization Information"/>
+                            <field name="auth_transaction_type"/>
+                            <field name="auth_cc_number"/>
+                            <field name="auth_cc_expiration_date"/>
+                                <label string="(mmyy)"/>
+                                <newline/>
+                                <field name="order_information"/>
+                            <field name="customer_information"/>
+                            <field name="hidden_field" invisible="1"/>
+                        <button name="submit" string="Submit" type="object" attrs="{'invisible':[('hidden_field','=','approved')]}"/>
+                        </group>
+                        <newline/>-->
+                        <separator string="Transaction Response Fields" colspan="8"/>
+                        <group colspan="3" col="6" >
+                            <field name="auth_transaction_id"/>
+                            <field name="authorization_code"/>
+                            <field name="customer_payment_profile_id"/>
+                            </group>
+                            <newline/>
+                          <separator string="Response Message" colspan="8"/>
+                          <group>
+                            <field name="auth_respmsg" colspan="8"  nolabel="1"/>
+                            </group>
+                     </page>
+                </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

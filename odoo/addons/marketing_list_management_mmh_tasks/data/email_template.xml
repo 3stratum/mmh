@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record forcecreate="True" id="generic_list" model="email.template">
+            <field name="name">MMH Marketing Partner List</field>
+            <field name="email_from">${user.company_id.email or ''}</field>
+            <field name="subject">ERP Marketing: ${object.content_type == 'physical_books' and 'Pysical Books' or 'Unknown'}</field>
+            <field name="email_to">ashley@mmherbs.com</field>
+            <field name="model_id" ref="marketing_list_management.model_list_header"/>
+            <field name="body_html"><![CDATA[
+Hello,
+
+please find attached list of partners for the ${object.content_type == 'physical_books' and 'Pysical Books' or 'Unknown'} that was firstly generated at ${object.generated_date|format_date(new_format='%m/%d/%Y %H:%M')}.
+]]></field>
+        </record>
+
+        <record forcecreate="True" id="referral_program_list" model="email.template">
+            <field name="name">MMH Referral Program List</field>
+            <field name="email_from">${user.company_id.email or ''}</field>
+            <field name="subject">ERP Marketing: ${object.content_type == 'referral_programs' and 'Referral Programs' or 'Unknown'}</field>
+            <field name="email_to">ashley@mmherbs.com</field>
+            <field name="model_id" ref="marketing_list_management.model_list_header"/>
+            <field name="body_html"><![CDATA[
+Hello,
+
+please find attached list of partners for the ${object.content_type == 'referral_programs' and 'Referral Programs' or 'Unknown'} that was firstly generated at ${object.generated_date|format_date(new_format='%m/%d/%Y %H:%M')}.
+]]></field>
+        </record>
+    </data>
+</openerp>

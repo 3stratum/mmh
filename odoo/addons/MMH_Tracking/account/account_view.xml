@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Add Class, Discount Code & Customer Type to Customer Invoice form view -->
+        <record id="view_account_invoice_form_mmh" model="ir.ui.view">
+            <field name="name">account.invoice.form.mmh</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="mmh_class" required='1'/>
+                    <field name="mmh_disc" required='1'/>
+                </field>
+                <field name="account_id" position="after">
+                    <field name="mmh_cust_type"/>
+                </field>
+           </field>
+        </record>
+        
+        
+        <!-- Add Class & Discount Code to Supplier Invoice -->
+        <record id="view_account_invoice_line_mmh" model="ir.ui.view">
+            <field name="name">line.mmh</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Invoice']/field[@name='invoice_line']/tree[@string='Invoice lines']/field[@name='product_id']" position="before">
+                    <field name="mmh_class" widget="selection"/>
+                    <field name="mmh_disc" widget="selection"/>
+                </xpath>
+           </field>
+        </record>
+	</data>
+</openerp>

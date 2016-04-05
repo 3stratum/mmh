@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <report id="report_account_invoices" model="account.invoice" name="account.invoice.bista" rml="bista_mmh/report/account_print_invoice.rml" string="Invoice Bista MMH"/>
+    </data>
+</openerp>

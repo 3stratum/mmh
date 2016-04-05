@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <!--Resource: res.partner-->
+        <record id="partner_usps" model="res.partner">
+            <field name="name">USPS</field>
+        </record>
+        <record id="partner_ups" model="res.partner">
+            <field name="name">UPS</field>
+        </record>
+        
+        <record id="partner_fedex" model="res.partner">
+            <field name="name">FedEx</field>
+        </record>
+
+        <!--Resource: Product-->
+        <record id="categ_service" model="product.category">
+            <field name="parent_id" ref="null"/>
+            <field name="name">Service</field>
+        </record>
+        <record id="product_product_shipping" model="product.product">
+                <field name="default_code">SHIP AND HANDLE</field>
+                <field name="list_price">0.0</field>
+                <field name="standard_price">0.0</field>
+                <field name="type">service</field>
+                <field name="name">Shipping and Handling</field>
+                <field name="categ_id" ref="categ_service"/>
+        </record>
+
+                
+        
+        <!--Resource: delivery.method for USPS-->        
+        <record id="dlv_usps_fc" model="delivery.carrier">
+            <field name="name">USPS First-Class</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_usps"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">First Class</field>
+            <field name="service_output">First-Class Mail</field>
+            <field name="size_usps">REGULAR</field>
+            <field name="is_usps" eval="True" />
+        </record>
+
+        <record id="dlv_usps_fc_package" model="delivery.carrier">
+            <field name="name">USPS First-Class Mail Package</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_usps"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">First Class</field>
+            <field name="service_output">First-Class Mail Package</field>
+            <field name="container_usps">Parcel</field>
+            <field name="size_usps">REGULAR</field>
+            <field name="first_class_mail_type_usps">Parcel</field>
+            <field name="is_usps" eval="True" />
+        </record>
+
+        <record id="dlv_usps_library" model="delivery.carrier">
+            <field name="name">USPS Library Mail</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_usps"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Library</field>
+            <field name="service_output">Library Mail</field>
+            <field name="container_usps">Parcel</field>
+            <field name="size_usps">REGULAR</field>
+            <field name="is_usps" eval="True" />
+        </record>
+
+        <record id="dlv_usps_media" model="delivery.carrier">
+            <field name="name">USPS Media Mail</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_usps"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Media</field>
+            <field name="service_output">Media Mail</field>
+            <field name="container_usps">Parcel</field>
+            <field name="size_usps">REGULAR</field>
+            <field name="is_usps" eval="True" />
+        </record>
+
+        <record id="dlv_usps_parcel_post" model="delivery.carrier">
+            <field name="name">USPS Parcel Post</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_usps"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Parcel</field>
+            <field name="service_output">Parcel Post</field>
+            <field name="container_usps">Parcel</field>
+            <field name="size_usps">REGULAR</field>
+            <field name="is_usps" eval="True" />
+        </record>
+
+        <record id="dlv_usps_priority" model="delivery.carrier">
+            <field name="name">USPS Priority Mail</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_usps"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Priority</field>
+            <field name="service_output">Priority Mail</field>
+            <field name="container_usps">Parcel</field>
+            <field name="size_usps">REGULAR</field>
+            <field name="is_usps" eval="True" />
+        </record>
+
+        <record id="dlv_usps_priority_sfrb" model="delivery.carrier">
+            <field name="name">USPS Priority Mail Small Flat Rate Box</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_usps"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Priority</field>
+            <field name="service_output">Priority Mail Small Flat Rate Box</field>
+            <field name="container_usps">SM Flat Rate Box</field>
+            <field name="size_usps">REGULAR</field>
+            <field name="is_usps" eval="True" />
+        </record>
+
+        <record id="dlv_usps_priority_mail_express" model="delivery.carrier">
+            <field name="name">USPS Priority Mail Express</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_usps"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Priority Mail Express</field>
+            <field name="service_output">Priority Mail Express</field>
+            <field name="container_usps">Parcel</field>
+            <field name="size_usps">REGULAR</field>
+            <field name="is_usps" eval="True" />
+        </record>
+
+        <record id="dlv_usps_parcel_select_barcoded_nonpresorted" model="delivery.carrier">
+            <field name="name">USPS Parcel Select Barcoded Nonpresorted</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_usps"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Parcel Select Barcoded Nonpresorted</field>
+            <field name="service_output">Parcel Select Barcoded Nonpresorted</field>
+            <field name="container_usps">Parcel</field>
+            <field name="size_usps">REGULAR</field>
+            <field name="is_usps" eval="True" />
+        </record>
+
+        <record id="dlv_usps_standard_post" model="delivery.carrier">
+            <field name="name">USPS Standard Post</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_usps"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Standard Post</field>
+            <field name="service_output">Standard Post</field>
+            <field name="container_usps">Parcel</field>
+            <field name="size_usps">REGULAR</field>
+            <field name="is_usps" eval="True" />
+        </record>
+
+        <!--Resource: delivery.method for UPS-->
+        <record id="delivery_ups_next_day_air_saver" model="delivery.carrier">
+            <field name="name">Next Day Air Saver UPS</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_ups"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Next Day Air Saver</field>
+            <field name="service_output">Next Day Air Saver</field>
+            <field name="is_ups" eval="True" />
+        </record>
+
+        <record id="delivery_ups_next_day_air_early_am" model="delivery.carrier">
+            <field name="name">Next Day Air Early AM UPS</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_ups"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Next Day Air Early AM</field>
+            <field name="service_output">Next Day Air Early AM</field>            
+            <field name="is_ups" eval="True" />
+        </record>
+
+        <record id="delivery_ups_three_day_select" model="delivery.carrier">
+            <field name="name">Three-Day Select UPS</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_ups"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Three-Day Select</field>
+            <field name="service_output">Three-Day Select</field>
+            <field name="is_ups" eval="True" />
+        </record>
+
+        <record id="delivery_ups_second_day_air" model="delivery.carrier">
+            <field name="name">Second Day Air UPS</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_ups"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Second Day Air</field>
+            <field name="service_output">Second Day Air</field>
+            <field name="is_ups" eval="True" />
+        </record>
+
+        <record id="delivery_ups_next_day_air" model="delivery.carrier">
+            <field name="name">Next Day Air UPS</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_ups"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Next Day Air</field>
+            <field name="service_output">Next Day Air</field>
+            <field name="is_ups" eval="True" />
+        </record>
+
+        <record id="delivery_ups_ground" model="delivery.carrier">
+            <field name="name">Ground UPS</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_ups"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">Ground</field>
+            <field name="service_output">Ground</field>
+            <field name="is_ups" eval="True" />
+        </record>
+
+        <!--Resource: delivery.method for FeDex-->
+        <record id="delivery_fedex_first_overnight" model="delivery.carrier">
+            <field name="name">FIRST_OVERNIGHT FedEX</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_fedex"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">FIRST_OVERNIGHT</field>
+            <field name="service_output">FIRST_OVERNIGHT</field>
+            <field name="is_fedex" eval="True" />
+        </record>
+
+        <record id="delivery_fedex_fedex_2_day" model="delivery.carrier">
+            <field name="name">FEDEX_2_DAY FedEX</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_fedex"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">FEDEX_2_DAY</field>
+            <field name="service_output">FEDEX_2_DAY</field>
+            <field name="is_fedex" eval="True" />
+        </record>
+
+        <record id="delivery_fedex_fedex_express_saver" model="delivery.carrier">
+            <field name="name">FEDEX_EXPRESS_SAVER FedEX</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_fedex"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">FEDEX_EXPRESS_SAVER</field>
+            <field name="service_output">FEDEX_EXPRESS_SAVER</field>
+            <field name="is_fedex" eval="True" />
+        </record>
+
+        <record id="delivery_fedex_standard_overnight" model="delivery.carrier">
+            <field name="name">STANDARD_OVERNIGHT FedEX</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_fedex"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">STANDARD_OVERNIGHT</field>
+            <field name="service_output">STANDARD_OVERNIGHT</field>
+            <field name="is_fedex" eval="True" />
+        </record>
+
+        <record id="delivery_fedex_priority_overnight" model="delivery.carrier">
+            <field name="name">PRIORITY_OVERNIGHT FedEX</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_fedex"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">PRIORITY_OVERNIGHT</field>
+            <field name="service_output">PRIORITY_OVERNIGHT</field>
+            <field name="is_fedex" eval="True" />
+        </record>
+
+        <record id="delivery_fedex_fedex_ground" model="delivery.carrier">
+            <field name="name">FEDEX_GROUND FedEX</field>
+            <field name="active" eval="True" />
+            <field name="partner_id" ref="partner_fedex"/>
+            <field name="product_id" ref="product_product_shipping"/>
+            <field name="service_code">FEDEX_GROUND</field>
+            <field name="service_output">FEDEX_GROUND</field>
+            <field name="is_fedex" eval="True" />
+        </record>
+
+        <!--Resource: packaging type for fedex-->        
+        <record id="product_packaging_type_fedex_your_packaging" model="shipping.package.type.fedex">
+            <field name="name">YOUR_PACKAGING</field>
+            <field name="length">0.0</field>
+            <field name="width">0.0</field>
+            <field name="height">0.0</field>
+        </record>        
+        <record id="product_packaging_type_fedex_fedex_box_large" model="shipping.package.type.fedex">
+            <field name="name">FEDEX_BOX</field>
+            <field name="length">17.88</field>
+            <field name="width">12.38</field>
+            <field name="height">3</field>
+        </record>        
+        <record id="product_packaging_type_fedex_fedex_xl_pack" model="shipping.package.type.fedex">
+            <field name="name">FEDEX_PAK</field>
+            <field name="length">17.5</field>
+            <field name="width">20.75</field>
+            <field name="height">1</field>
+        </record>
+        <record id="product_packaging_type_fedex_fedex_tube" model="shipping.package.type.fedex">
+            <field name="name">FEDEX_TUBE</field>
+            <field name="length">38</field>
+            <field name="width">6</field>
+            <field name="height">6</field>
+        </record>
+        <record id="product_packaging_type_fedex_fedex_10kg_box" model="shipping.package.type.fedex">
+            <field name="name">FEDEX_10KG_BOX</field>
+            <field name="length">15.81</field>
+            <field name="width">12.94</field>
+            <field name="height">10.19</field>
+        </record>
+        <record id="product_packaging_type_fedex_fedex_25kg_box" model="shipping.package.type.fedex">
+            <field name="name">FEDEX_25KG_BOX</field>
+            <field name="length">21.56</field>
+            <field name="width">16.56</field>
+            <field name="height">13.19</field>
+        </record>
+        <record id="product_packaging_type_fedex_fedex_envelope" model="shipping.package.type.fedex">
+            <field name="name">FEDEX_ENVELOPE</field>
+            <field name="length">9.252</field>
+            <field name="width">13.189</field>
+            <field name="height">1</field>
+        </record>
+
+        <!--Resource: packaging type for UPS-->
+        <record id="product_packaging_type_ups_unknown" model="shipping.package.type.ups">
+            <field name="name">Unknown</field>
+            <field name="length">0.0</field>
+            <field name="width">0.0</field>
+            <field name="height">0.0</field>
+            <field name="ups_value">00</field>
+        </record>        
+        <record id="product_packaging_type_ups_package" model="shipping.package.type.ups">
+            <field name="name">UPS Package</field>
+            <field name="length">15</field>
+            <field name="width">9.5</field>
+            <field name="height">1</field>
+            <field name="ups_value">02</field>
+        </record>
+        <record id="product_packaging_type_ups_express_tube" model="shipping.package.type.ups">
+            <field name="name">UPS Express Tube</field>
+            <field name="length">38</field>
+            <field name="width">6</field>
+            <field name="height">6</field>
+            <field name="ups_value">03</field>
+        </record>        
+        <record id="product_packaging_type_ups_express_pack" model="shipping.package.type.ups">
+            <field name="name">UPS Express Pak</field>
+            <field name="length">16</field>
+            <field name="width">12.75</field>
+            <field name="height">1</field>
+            <field name="ups_value">04</field>
+        </record>
+        <record id="product_packaging_type_ups_express_box" model="shipping.package.type.ups">
+            <field name="name">UPS Express Box</field>
+            <field name="length">18</field>
+            <field name="width">13</field>
+            <field name="height">3</field>
+            <field name="ups_value">21</field>
+        </record>                
+        <record id="product_packaging_type_ups_express_box_small" model="shipping.package.type.ups">
+            <field name="name">UPS Express Box Small</field>
+            <field name="length">13</field>
+            <field name="width">11</field>
+            <field name="height">2</field>
+            <field name="ups_value">2a</field>
+        </record>
+        <record id="product_packaging_type_ups_express_box_medium" model="shipping.package.type.ups">
+            <field name="name">UPS Express Box Medium</field>
+            <field name="length">16</field>
+            <field name="width">11</field>
+            <field name="height">3</field>
+            <field name="ups_value">2b</field>
+        </record>
+        <record id="product_packaging_type_ups_express_box_large" model="shipping.package.type.ups">
+            <field name="name">UPS Express Box Large</field>
+            <field name="length">18</field>
+            <field name="width">13</field>
+            <field name="height">3</field>
+            <field name="ups_value">2c</field>
+        </record>
+        
+        
+        <record id="partner_canada" model="res.partner">
+            <field name="name">Canada Post</field>
+        </record>
+        <record id="product_product_shipping_canada" model="product.product">
+            <field name="default_code">Canada Post Ship and Handle</field>
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+            <field name="name">Canada Service Product</field>
+            <field name="categ_id" ref="bista_shipping.categ_service"/>
+        </record>
+
+    </data>
+</openerp>

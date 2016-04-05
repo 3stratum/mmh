@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+
+         <record id="view_picking_out_tree_mmh" model="ir.ui.view">
+            <field name="name">view.picking.out.tree.mmh</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_tree"/>
+            <field name="arch" type="xml">
+
+                <field name="origin" position="after">
+                    <field name="mmh_class"/>
+                    <field name="mmh_disc_code"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_stock_picking_out_mmh_bista" model="ir.ui.view">
+            <field name="name">stock.picking.out.mmh.bista</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_id']" position="replace">
+                    <field name="partner_id" on_change="onchange_partner_in(partner_id)" string="Customer"
+                    domain="[('customer','=',True)]" options="{'limit': 10, 'create': false, 'create_edit': false}" />
+                </xpath>
+                <xpath expr="//field[@name='stock_journal_id']" position="after">
+		    <field name="replace_address"/>
+                    <field name="alt_address" attrs="{'visible':[('replace_address','=',True)]}"/>
+                </xpath>
+                <xpath expr="//page[@string='Additional Info']" position="after">
+                    <page string="Tracking History" >
+
+                        <field name="delivery_tracking_line" colspan="4" nolabel="1" readonly="1">
+                            <tree string="Tracking History" editable="top">
+                                <field name="back_order_id" />
+                                <field name="tracking_no" />
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record> 
+        <record id="view_stock_picking_in_mmh" model="ir.ui.view">
+            <field name="name">stock.picking.in.mmh</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_in_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_id']" position="replace">
+                    <field name="partner_id" on_change="onchange_partner_in(partner_id)" string="Supplier"
+                    domain="[('supplier','=',True)]" context="{'default_supplier':1,'default_customer':0}"
+                    options="{'limit': 10, 'create': false, 'create_edit': false}" />
+                </xpath>
+
+            </field>
+        </record>
+
+
+<!--  ================mrp_move_scrap view=======================================  -->
+
+           <record id="view_mrp_move_scrap_wizard" model="ir.ui.view">
+            <field name="name">Scrap Move</field>
+            <field name="model">mrp.move.scrap</field>
+            <field name="arch" type="xml">
+                <form string="Scrap Move" version="7.0">
+                    <separator string="Scrap Products"/>
+                    <group>
+                        <field name="product_id"  readonly="1"/>
+                        <label for="product_qty"/>
+                        <div>
+                            <field name="product_qty" class="oe_inline"/>
+                            <field name="product_uom" class="oe_inline" readonly="1" groups="product.group_uom"/>
+                        </div>
+                        <field name="location_id" string="Scrap Location" widget="selection"
+                            domain="[('usage','!=','view'),('scrap_location','=',True)]" groups="stock.group_locations"/>
+
+                    <field name="avail_qty" string='Quantity on Hand' readonly='1'/>
+                    <field name="virtual_qty" string='forcasted quantity' readonly='1'/>
+
+                    </group>
+                    
+
+                    <footer>
+                        <button name="move_scrap" string="Scrap" type="object" class="oe_highlight"  />
+                        or
+
+			<button name="move_unscrap" string="Unscrap" type="object" class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="mrp_move_scrap_act" model="ir.actions.act_window">
+            <field name="name">Scrap Move</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.move.scrap</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+
+
+
+
+    </data>
+</openerp>

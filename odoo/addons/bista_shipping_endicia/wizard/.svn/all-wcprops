@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/wizard
+END
+account_status_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/wizard/account_status_view.xml
+END
+buying_postage_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/wizard/buying_postage_view.xml
+END
+refund_request.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/wizard/refund_request.py
+END
+endicia.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/wizard/endicia.py
+END
+refund_request_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/wizard/refund_request_view.xml
+END
+shipping_endicia.py
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/wizard/shipping_endicia.py
+END
+change_passphrase.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/wizard/change_passphrase.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/wizard/__init__.py
+END
+account_status.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/wizard/account_status.py
+END
+buying_postage.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/wizard/buying_postage.py
+END
+change_passphrase_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/wizard/change_passphrase_view.xml
+END

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<openerp><data>
+
+    <record id="view_profile_ids" model="ir.ui.view">
+            <field name="name">view.profile.ids</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+
+                <xpath expr="/form/sheet/notebook" position="inside">
+                    <page string="Customer Profile">
+                        <field name="customer_profile_id" readonly="True"/>
+                        <newline/>
+                        <field name="profile_ids"  nolabel="1" widget='one2many' colspan="8" readonly="1">
+                        <tree>
+                                    <field name="profile_id"/>
+                                    <button name="delete_record" type = "object" icon = "gtk-delete"/>
+                        </tree>
+                        <form>
+                            <group>
+                            <field name="profile_id"/>
+                            <field name="customer_profile_id"/>
+                            <field name="credit_card_no"/>
+                            <button name="delete_record" type = "object" string = "Delete" />
+                            </group>
+                        </form>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+
+        </record>
+
+        <record id="view_customer_profile_form" model="ir.ui.view">
+            <field name="name">view.customer.profile.form</field>
+            <field name="model">custmer.payment.profile</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Customer Payment Profile">
+                   <field name="profile_id" readonly="True"/>
+                   <field name="credit_card_no" readonly="True"/>
+               </form>
+            </field>
+            
+        </record>
+        <record id="view_customer_profile_tree" model="ir.ui.view">
+            <field name="name">view.customer.profile.tree</field>
+            <field name="model">custmer.payment.profile</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Customer Payment Profile">
+                   <field name="profile_id" />
+               </tree>
+            </field>
+        </record>
+</data></openerp>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_crm_case_form_view_leads_mmh" model="ir.ui.view">
+            <field name="name">crm.case.form.view.leads.mmh</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+            <field name="model">crm.lead</field>
+            <field name="arch" type="xml">
+                <field name="email_from" position="after">
+                    <field name="mmh_origin" required='1'/> 
+                    <field name="mmh_cust_type" required='1'/> 
+                </field>
+           </field>
+        </record>
+	</data>
+</openerp>

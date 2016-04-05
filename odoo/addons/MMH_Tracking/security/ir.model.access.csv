@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mmh_origin,mmh.origin.user,model_mmh_origin,mmh_tracking_group,1,1,1,1
+access_mmh_cust_type,mmh.cust.type.user,model_mmh_cust_type,mmh_tracking_group,1,1,1,1
+access_account_invoice_class,account.invoice.class.user,model_account_invoice_class,mmh_tracking_group,1,1,1,1
+access_account_invoice_discount,account.invoice.discount.user,model_account_invoice_discount,mmh_tracking_group,1,1,1,1

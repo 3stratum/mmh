@@ -1,0 +1,18 @@
+from openerp.osv import fields, osv
+from openerp.tools.translate import _
+from openerp import tools
+
+class product_product(osv.osv):
+
+    _inherit = 'product.product'
+
+    _columns = {
+          'location': fields.many2one('stock.location', 'Raw Material Location')
+    }
+product_product()
+
+class product_category(osv.osv):
+    _inherit = 'product.category'
+product_category()
+
+

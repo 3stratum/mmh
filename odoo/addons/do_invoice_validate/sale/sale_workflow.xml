@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="sale_stock.trans_wait_invoice_invoice" model="workflow.transition">
+            <field name="condition">order_policy=='prepaid' or order_policy=='postpaid'</field>
+        </record>
+
+        <record id="sale_stock.trans_wait_ship_ship" model="workflow.transition">
+            <field name="condition">order_policy not in ('prepaid','postpaid')  or invoiced_validate</field>
+        </record>
+
+        <record id="account.act_open" model="workflow.activity">
+            <field name="signal_send">subflow.open</field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+    <!--Addding a many2one of lcation in Product template-->
+    <record id="view_template_property_form_mmh1" model="ir.ui.view">
+            <field name="name">view.template.property.form.mmh1</field>
+            <field name="model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="inherit_id" ref="stock.view_normal_procurement_locations_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//group[@name='store']/field[@name='property_stock_inventory']" position="after">
+                        <field name="location"/>
+                 </xpath>
+
+            </field>
+     </record>
+
+<!--Making the Create And Edit Invisible in Product Form View for Accounting Attributes-->
+
+      <record id="product_normal_form_view_inherit_mmh" model="ir.ui.view">
+            <field name="name">product.normal.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="inherit_id" ref="account.product_normal_form_view"/>
+            <field name="arch" type="xml">
+              <xpath expr="//field[@name='property_account_income']" position="replace">
+                   <field name="property_account_income"  options="{'create': false,  'create_edit': false}" domain="[('type','=','other')]"  groups="account.group_account_user"/>
+               </xpath>
+               <xpath expr="//field[@name='property_account_expense']" position="replace">
+                   <field name="property_account_expense"  options="{'create': false,  'create_edit': false}" domain="[('type','=','other')]"  groups="account.group_account_user"/>
+               </xpath>
+          </field>
+        </record>
+
+<!-- Making the Create And Edit Invisible in Product Category Form View for Accounting Attributes -->
+       <record id="view_category_property_form_mmh" model="ir.ui.view">
+            <field name="name">view.category.property.form.mmh</field>
+            <field name="model">product.category</field>
+            <field name="view_type">form</field>
+            <field name="inherit_id" ref="account.view_category_property_form"/>
+            <field name="arch" type="xml">
+              <xpath expr="//field[@name='property_account_income_categ']" position="replace">
+                   <field name="property_account_income_categ"  options="{'create': false,  'create_edit': false}" domain="[('type','=','other')]"  groups="account.group_account_user"/>
+               </xpath>
+               <xpath expr="//field[@name='property_account_expense_categ']" position="replace">
+                   <field name="property_account_expense_categ"  options="{'create': false,  'create_edit': false}" domain="[('type','=','other')]"  groups="account.group_account_user"/>
+               </xpath>
+           </field>
+        </record>
+        
+<!---Making the Create And Edit Invisible in Accounting Stock Properties Form-->
+       <record id="view_category_property_form_mmh1" model="ir.ui.view">
+            <field name="name">view.category.property.form.mmh1</field>
+            <field name="model">product.category</field>
+            <field name="view_type">form</field>
+            <field name="inherit_id" ref="stock.view_category_property_form"/>
+            <field name="arch" type="xml">
+              <xpath expr="//field[@name='property_stock_account_input_categ']" position="replace">
+                   <field name="property_stock_account_input_categ"  options="{'create': false,  'create_edit': false}" domain="[('type','=','other')]"  groups="account.group_account_user"/>
+               </xpath>
+               <xpath expr="//field[@name='property_stock_account_output_categ']" position="replace">
+                   <field name="property_stock_account_output_categ"  options="{'create': false,  'create_edit': false}" domain="[('type','=','other')]"  groups="account.group_account_user"/>
+               </xpath>
+               <xpath expr="//field[@name='property_stock_valuation_account_id']" position="replace">
+                   <field name="property_stock_valuation_account_id"  options="{'create': false,  'create_edit': false}" domain="[('type','=','other')]"  groups="account.group_account_user"/>
+               </xpath>
+                <xpath expr="//field[@name='property_stock_journal']" position="replace">
+                   <field name="property_stock_journal"  options="{'create': false,  'create_edit': false}" domain="[('type','=','other')]"  groups="account.group_account_user"/>
+               </xpath>
+           </field>
+        </record>
+        
+ </data>
+ </openerp>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_authorize_net_config,authorize.net.config,bista_authorize_net.model_authorize_net_config,group_authorize_user,1,1,1,0
+access_authorize_osv,authorize.osv,bista_authorize_net.model_authorize_osv,group_authorize_user,1,1,1,0
+access_customer_payment_profile,custmer.payment.profile,bista_authorize_net.model_custmer_payment_profile,group_authorize_user,1,1,1,1

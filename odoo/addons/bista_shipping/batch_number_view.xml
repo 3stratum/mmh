@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_batch_number_form_bista_advance" model="ir.ui.view">
+            <field name="name">view.batch.number.form.bista.advance</field>
+            <field name="model">batch.numbers</field>
+            <field name="inherit_id" ref="bista_batch_shipping.view_batch_number_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/field[@name='packed']" position="after">
+                    <field name="labels_generated"/>
+                </xpath>
+            </field>
+        </record>
+     </data>
+  </openerp>

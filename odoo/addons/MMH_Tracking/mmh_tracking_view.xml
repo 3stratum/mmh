@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+		<!-- Create Menu Item to allow for setting options in Origin -->
+		<menuitem name="MMH Tracking" id="menu_mmh_tracking_main"/>
+		
+		<record id="view_mmh_origin_form" model="ir.ui.view">
+            <field name="name">mmh.origin.form</field>
+            <field name="model">mmh.origin</field>
+            <field name="arch" type="xml">
+                <form string="MMH Tracking" version="7.0">
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+		<record id="view_mmh_origin_tree" model="ir.ui.view">
+            <field name="name">mmh.origin.tree</field>
+            <field name="model">mmh.origin</field>
+            <field name="arch" type="xml">
+                <tree string="MMH Tracking" version="7.0">
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+		<record id="action_mmh_tracking" model="ir.actions.act_window">
+            <field name="name">MMH Tracking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mmh.origin</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+		<record id="view_account_invoice_class_form" model="ir.ui.view">
+            <field name="name">account.invoice.class.form</field>
+            <field name="model">account.invoice.class</field>
+            <field name="arch" type="xml">
+                <form string="MMH Tracking" version="7.0">
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+		<record id="view_account_invoice_class_tree" model="ir.ui.view">
+            <field name="name">account.invoice.class.tree</field>
+            <field name="model">account.invoice.class</field>
+            <field name="arch" type="xml">
+                <tree string="MMH Tracking" version="7.0">
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+		<record id="action_mmh_class" model="ir.actions.act_window">
+            <field name="name">MMH Class</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice.class</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+		<record id="view_account_invoice_discount_form" model="ir.ui.view">
+            <field name="name">account.invoice.discount.form</field>
+            <field name="model">account.invoice.discount</field>
+            <field name="arch" type="xml">
+                <form string="MMH Tracking" version="7.0">
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+		<record id="view_account_invoice_discount_tree" model="ir.ui.view">
+            <field name="name">account.invoice.discount.tree</field>
+            <field name="model">account.invoice.discount</field>
+            <field name="arch" type="xml">
+                <tree string="MMH Tracking" version="7.0">
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+		<record id="action_mmh_discount" model="ir.actions.act_window">
+            <field name="name">MMH Discount</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice.discount</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+		<record id="view_mmh_cust_type_form" model="ir.ui.view">
+            <field name="name">mmh.cust.type.form</field>
+            <field name="model">mmh.cust.type</field>
+            <field name="arch" type="xml">
+                <form string="MMH Tracking" version="7.0">
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+		<record id="view_mmh_cust_type_tree" model="ir.ui.view">
+            <field name="name">mmh.cust.type.tree</field>
+            <field name="model">mmh.cust.type</field>
+            <field name="arch" type="xml">
+                <tree string="MMH Tracking" version="7.0">
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+		<record id="action_mmh_cust_type" model="ir.actions.act_window">
+            <field name="name">MMH Customer Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mmh.cust.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+		<menuitem name="MMH Tracking"
+            id="menu_mmh_tracking"
+            parent="menu_mmh_tracking_main"/>
+		
+		<menuitem name="Origin"
+            id="menu_mmh_origin"
+            action="action_mmh_tracking"
+            parent="menu_mmh_tracking"/>
+		
+		<menuitem name="Class"
+            id="menu_account_invoice_class"
+            action="action_mmh_class"
+            parent="menu_mmh_tracking"/>
+		
+		<menuitem name="Discount Code"
+            id="menu_account_invoice_discount"
+            action="action_mmh_discount"
+            parent="menu_mmh_tracking"/>
+		
+		<menuitem name="Customer Type"
+            id="menu_mmh_cust_type"
+            action="action_mmh_cust_type"
+            parent="menu_mmh_tracking"/>
+				        
+    </data>
+</openerp>

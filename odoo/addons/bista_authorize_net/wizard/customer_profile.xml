@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_customer_profile_payment_profile" model="ir.ui.view">
+          <field name="name">view.customer.profile.payment.profile</field>
+          <field name="model">customer.profile.payment.profile</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+              <form string="New Customer Profile" version="7.0">
+                  <group col="4" colspan="4">
+                      <field name="auth_cc_number" password="True"/>
+                      <field name="auth_cc_expiration_date"/>
+                      <field name="billing_addr"/>
+                      <!--<field name="customer_profile"/>-->
+                      <!--<field name="shipping_add_info"/>-->
+                      <field name="shipping_addr"/>
+                      </group>
+                      <button name="customer_profile" string="Customer Profile" type="object" icon="gtk-ok"/>
+              </form>
+          </field>
+       </record>
+        <record id="action_new_profile" model="ir.actions.act_window">
+            <field name="name">New Customer Profile</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">customer.profile.payment.profile</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_customer_profile_payment_profile"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

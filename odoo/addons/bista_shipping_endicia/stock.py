@@ -1,0 +1,107 @@
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    Bista Solutions Pvt. Ltd
+#    Copyright (C) 2012 (http://www.bistasolutions.com)
+#
+##############################################################################
+from openerp.osv import fields, osv
+from openerp.tools.translate import _
+import endicia
+from shipping_endicia import Package
+from miscellaneous import Address
+import binascii
+from urllib2 import Request, urlopen, URLError, quote
+
+class shipping_response(osv.osv):
+    _name = 'shipping.response'
+    _inherit = 'shipping.response'
+    def generate_tracking_no(self, cr, uid, ids, context={}, error=True):
+        print "generate_tracking_nogenerate_tracking_nogenerate_tracking_no"
+        if context is None:
+            context = {}
+        context['usps_active'] = False
+        endicia_response = self.browse(cr,uid,ids[0])
+        print "endicia_responseendicia_responseendicia_response",endicia_response
+        super(shipping_response,self).generate_tracking_no(cr, uid, ids, context,error)
+        return True
+shipping_response()
+
+
+class stock_picking_out(osv.osv):
+    
+    _inherit = "stock.picking.out"
+
+    def create_shipping_quotes(self,cr,uid,ids,response,weight,cust_default,sys_default,context=None):
+        shipping_res_obj = self.pool.get('shipping.response')
+        for resp in response['info']:
+            sr_no = 1 if cust_default and cust_default.split('/')[0] == 'USPS' and cust_default.split('/')[1].split(' ')[0] in resp['service'] else 9
+            sr_no = 2 if sr_no == 9 and sys_default and sys_default.split('/')[0] == 'USPS' and sys_default.split('/')[1].split(' ')[0] in resp['service'] else sr_no
+            vals = {
+                'name': resp['service'],
+                'type': 'USPS',
+                'rate': resp['cost'],
+                'weight': weight,
+                'sys_default': False,
+                'cust_default': False,
+                'sr_no': sr_no,
+                'picking_id': ids[0]
+            }
+            res_id = shipping_res_obj.create(cr,uid,vals)
+        return True
+
+
+    def generate_usps_endicia_shipping(self, cr, uid, ids, weight, shipper, recipient, cust_default=False, sys_default=False, error=True, context=None):
+        if 'usps_endicia_active' in context.keys() and context['usps_endicia_active'] == False:
+            return False
+        stockpicking_lnk = self.browse(cr,uid,ids[0])
+        ship_endicia = self.pool.get('shipping.endicia').get_endicia_info(cr,uid,context)
+        credentials = {'partner_id':ship_endicia.requester_id,'account_id':ship_endicia.account_id,'passphrase':ship_endicia.passphrase}
+        en = endicia.Endicia(credentials,ship_endicia.test)
+        packages = [Package(stockpicking_lnk.service_type_usps, round(weight * 16,1),stockpicking_lnk.length_usps, stockpicking_lnk.width_usps, stockpicking_lnk.height_usps, require_signature=3, reference='a12302b') ]        
+        response = en.rate(packages, Package.shapes[stockpicking_lnk.container_usps], shipper, recipient)
+        if response['status'] == 0:
+            return self.create_shipping_quotes(cr,uid,ids,response,weight,cust_default,sys_default,context)
+        
+
+    def generate_shipping(self, cr, uid, ids, context={}):
+        default_ship_obj = self.pool.get('sys.default.shipping')
+        if context is None:
+            context = {}
+        context['usps_active'] = False
+        context['ups_active'] = False
+        super(stock_picking_out, self).generate_shipping(cr, uid, ids, context)
+        for id in ids:
+            try:
+                stockpicking = self.browse(cr,uid,id)
+                shipping_type = stockpicking.shipping_type
+                if shipping_type == 'USPS' or shipping_type == 'All':
+                    weight = stockpicking.weight_package if stockpicking.weight_package else stockpicking.weight_net
+                    if not weight:
+                        if context.get('error',False):
+                            raise osv.except_osv(_('Warning !'),_('Package Weight Invalid!'))
+                        else:
+                            return False                    
+                    if  stockpicking.sale_id :
+                        cust_address = stockpicking.sale_id.shop_id and stockpicking.sale_id.shop_id.warehouse_id.partner_id
+                    else:
+                        cust_address = stockpicking.ware_id.partner_id
+                    if not cust_address:
+                        if context.get('error',False):
+                            raise osv.except_osv(_('Warning !'),_('Shop Address not defined!'))
+                        else:
+                            return False                    
+                    shipper = Address(cust_address.name or cust_address.name, cust_address.street, cust_address.city, cust_address.state_id.code or '', cust_address.zip, cust_address.country_id.code, cust_address.street2 or '', cust_address.phone or '', cust_address.email, cust_address.name)
+                    ### Recipient                    
+                    cust_address = stockpicking.alt_address or  stockpicking.partner_id		    
+                    receipient = Address(cust_address.name or '', cust_address.street and cust_address.street.rstrip(','), cust_address.city and cust_address.city.rstrip(','), cust_address.state_id.code or '', cust_address.zip, cust_address.country_id.code, cust_address.street2 and (cust_address.street != cust_address.street2) and cust_address.street2.rstrip(',') or '', cust_address.phone or '', cust_address.email, (cust_address.name != cust_address.name) and cust_address.name or '')
+                    saleorderline_ids = self.pool.get('sale.order.line').search(cr,uid,[('order_id','=',stockpicking.sale_id.id)])
+                    sys_default = default_ship_obj._get_sys_default_shipping(cr,uid,saleorderline_ids,weight,context)
+                    context['sys_default'] = sys_default
+                    cust_default = default_ship_obj._get_cust_default_shipping(cr,uid,stockpicking.carrier_id.id,context)
+                    context['cust_default'] = cust_default
+                    shipping_res = self.generate_usps_endicia_shipping(cr,uid,[id],weight,shipper,receipient,context.get('cust_default',False),context.get('sys_default',False),context.get('error',False),context)
+            except Exception, exc:
+                raise osv.except_osv(_('Error!'),_('%s' % (exc,)))
+        return True
+stock_picking_out()

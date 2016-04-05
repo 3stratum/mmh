@@ -1,0 +1,33 @@
+<openerp>
+    <data>
+        <record id="product_normal_extra_configuration" model="ir.ui.view">
+            <field name="name">product.normal.extra.configuration</field>
+            <field name="model">product.product</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <data>
+                    <notebook position="inside">
+                        <page string='Extra Product Configuration'>
+                            <field name="ext_prod_config" nolabel="1" mode="tree,form">
+                                <tree string="Extra Product Configuration">
+                                <field name="name"/>
+                                <field  name="comp_product_id"/>
+                                <field  name="qty"/>
+                                <field  name="price"/>
+                            </tree>
+                             <form string="Extra Product Configuration">
+                                <field name="comp_product_id" required="True" on_change="onchange_product_id(comp_product_id,qty)"/>
+                                 <field  name="name"/>
+                                 <field  name="qty" required="True"/>
+                                 <field  name="price"/>
+                            </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia
+END
+endicia.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/endicia.py
+END
+shipping_endicia.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/shipping_endicia.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/__init__.py
+END
+shipping.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/shipping.py
+END
+miscellaneous.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/miscellaneous.py
+END
+shipping_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/shipping_view.xml
+END
+stock.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/stock.py
+END
+__openerp__.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/__openerp__.py
+END
+sale.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/bista/!svn/ver/5818/MMH/code/bista_shipping_endicia/sale.py
+END

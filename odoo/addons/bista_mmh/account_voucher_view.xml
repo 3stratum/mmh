@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="bista_view_bank_statement_form_voucher_mmh_view" model="ir.ui.view">
+            <field name="name">bista.account.bank.statement.voucher.tree.inherit.mmh.form</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account_voucher.view_bank_statement_form_voucher"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='partner_id']" position="replace">
+                    <field name="partner_id" on_change="onchange_partner_id(partner_id)" 
+                      attrs="{'required':['|',('is_customer','=',True),('is_supplier','=',True)]}" domain="[('parent_id','=',False),'|',('customer','=',is_customer),('supplier','=',is_supplier)]"/>
+                </xpath>
+
+                <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='account_id']" position="replace">
+                    <field name="account_id" on_change="onchange_account_id(account_id)" options='{"no_open":True}' domain="[('journal_id','=',parent.journal_id), ('company_id', '=', parent.company_id)]"/>
+                    <field name="is_customer"/>
+                    <field name="is_supplier"/>
+                </xpath>
+                <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='voucher_id']" position="after">
+                    <button name="%(bista_mmh.action_view_show_receiveables_payables)d" string="Select" type="action" icon="gtk-justify-fill"/>
+                </xpath>
+                <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/tree/field[@name='analytic_account_id']" position="replace">
+                </xpath>
+                <xpath expr="//page[@name='statement_line_ids']/field[@name='line_ids']/form/group/field[@name='voucher_id']" position="replace">
+                    <field name="voucher_id" widget="many2onebutton" options="{'label':{'create':'Reconcile','edit':'Edit Reconciliation'}}" context="{'line_type': type, 'default_type': amount &lt; 0 and 'payment' or 'receipt', 'type': amount &lt; 0 and 'payment' or 'receipt', 'default_partner_id': partner_id, 'default_journal_id': parent.journal_id, 'default_amount': abs(amount), 'default_reference': ref, 'default_date': date, 'default_name': name, 'default_active': False,'default_statement' : True}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_vendor_payment_form_mmh" model="ir.ui.view">
+            <field name="name">view.vendor.payment.form.mmh</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Payment Information']/field[@name='line_dr_ids']/tree/field[@name='account_id']" position="after">
+                    <field name="supplier_invoice_number" readonly="1"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</openerp>

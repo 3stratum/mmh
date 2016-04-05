@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--enchancement for customer shipping account-->
+<openerp>
+    <data>
+        <record id="view_partner_form_inherited" model="ir.ui.view">
+            <field name="name">view.partner.form.inherited</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook" position="inside">
+                    <page string="Shipping Accounts">
+                        <separator string="UPS Setting"/>
+                        <group colspan="4">
+                            <group>
+                                <separator string="General Information" colspan="2"/>
+                                <field name="ups_name" />
+                                <field name="access_license_no" />
+                                <field name="ups_user_id" />
+                                <field name="ups_password" />
+                                <field name="shipper_no" />
+                            </group>
+                            <group>
+                                <separator string="Production/Test" colspan="2"/>
+                                <field name="ups_test"/>
+                                <field name="ups_active"/>
+                                <field name="weight_measure"/>
+                            </group>
+                        </group>
+                        <separator string="Fedex Setting"/>
+                        <group colspan="4">
+                            <group>
+                                <separator string="General Information" colspan="2"/>
+                                <field name="fedex_name" />
+                                <field name="account_no" />
+                                <field name="key" />
+                                <field name="fedex_password" />
+                                <field name="meter_no" />
+                                <field name="integrator_id" />
+                            </group>
+                            <group>
+                                <separator string="Others" colspan="2"/>
+                                <field name="fedex_test"/>
+                                <field name="fedex_active"/>
+                            </group>
+                        </group>
+                        <separator string="USPS Setting"/>
+                        <group colspan="4">
+                            <group>
+                                <separator string="General Information" colspan="2"/>
+                                <field name="usps_name" />
+                                <field name="usps_user_id" />
+                            </group>
+                            <group>
+                                <separator string="Others" colspan="2"/>
+                                <field name="usps_test"/>
+                                <field name="usps_active"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

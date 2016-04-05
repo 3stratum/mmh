@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="wizard_view" model="ir.ui.view">
+            <field name="name">Posting of Unposted Entires</field>
+            <field name="model">post.journal</field>
+            <field name="arch" type="xml">
+                <form string="Upload CSV File" version="7.0">
+                    <div>
+                        Posting of Unposted Journal entries
+                    </div>
+                    <footer>
+                        <button string="Post" name="post_selected_jornal" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+
+
+                <act_window id="journal_posting_wizard"
+            name="Posting Of Journal Entries"
+            src_model="account.move"
+            res_model="post.journal"
+            view_type="form" view_mode="form"
+            key2="client_action_multi" target="new"
+            groups="base.group_partner_manager"/>
+
+    </data>
+</openerp>

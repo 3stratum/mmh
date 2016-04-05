@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_charge_customer" model="ir.ui.view">
+          <field name="name">view_charge_customer</field>
+          <field name="model">charge.customer</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+              <form string="Charge Customer" version="7.0">
+                  <group col="4" colspan="4">
+<!--                      <field name="cust_profile_id"/>-->
+                      <field name="cust_payment_profile_id"/>
+                      <field name="transaction_type"/>
+<!--                      <button name="charge_customer" string="Charge Customer" type="object" icon="gtk-ok"/>-->
+                      <button name="charge_customer" string="Authorize" type="object" icon="gtk-ok"/>
+              </group>
+              </form>
+          </field>
+       </record>
+        <record id="action_charge_customer" model="ir.actions.act_window">
+            <field name="name">Charger Customer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">charge.customer</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_charge_customer"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

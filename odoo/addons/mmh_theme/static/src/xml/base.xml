@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="mmh_theme.login_layout" inherit_id="web.login_layout" name="mmh_theme.login_layout">
+            <xpath expr="//div[@class='row']" position="attributes">
+                <attribute name="style">margin-top: 25px;</attribute>
+            </xpath>
+            <xpath expr="//div[@class='text-center'][last()]" position="replace">
+                <div class="text-center">
+                    <a href="http://www.odoo.com" target="_blank">Powered by <span>Odoo / 3 Stratum</span></a> 
+                </div>
+            </xpath>
+       </template>
+       <template id="mmh_theme.login" inherit_id="web.login" name="mmh_theme.login">
+            <xpath expr="//div[@class='form-group field-login']" position="replace">
+                <label for="login" class="control-label">Username</label>
+                    <input type="text" name="login" id="login" class="form-control" required="required" autofocus="autofocus"/>
+            </xpath>
+       </template>
+    </data>
+</openerp>

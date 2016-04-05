@@ -1,0 +1,100 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+from openerp.osv import osv, fields
+from openerp import tools
+from openerp import netsvc
+from openerp.tools.translate import _
+
+# Add Class and Origin to Customer Sales Order.
+class sale_order(osv.osv):
+    _inherit = "sale.order"
+
+    def _prepare_order_picking(self, cr, uid, order, context=None):
+        pick_obj=self.pool.get('stock.picking')
+
+        stock_obj=self.pool.get('stock.picking.out')
+        super_vals = super(sale_order, self)._prepare_order_picking(cr, uid, order, context=None)
+        print "super vals1",super_vals
+        if order.invoice_ids:
+            super_vals.update({
+                'warehouse_id' : order.shop_id and order.shop_id.warehouse_id and order.shop_id.warehouse_id.id or False,
+                'invoice_id': order.invoice_ids and order.invoice_ids[0].id or False,
+            })
+
+            pick_ids = pick_obj.search(cr ,uid ,[('type','=','out')],order="id desc",limit=1)
+
+            if pick_ids:
+                pick_prev_out_obj = pick_obj.browse(cr, uid, pick_ids[0])
+                super_vals.update({
+                    'shipping_type' : pick_prev_out_obj.shipping_type or False,
+                    'weight_package' : pick_prev_out_obj.weight_package or False,
+                    'shipping_account' : pick_prev_out_obj.shipping_account or False,
+                    'container_usps' : pick_prev_out_obj.container_usps or False,
+                    'size_usps' : pick_prev_out_obj.size_usps or False,
+                    'use_shipping' : True,
+                    'check_super' : True,
+                })
+            if order.invoice_ids[0].alt_add.id:
+                super_vals.update({'alt_address': order.invoice_ids[0].alt_add.id,'replace_address': True})
+        print "super valssss",super_vals
+        return super_vals
+
+    def action_cancel_draft(self, cr, uid, ids, *args):
+        '''
+          This functions sets sale order to draft state along with its sale order lines.
+        '''
+        self.write(cr, uid, ids, {'state':'draft'})
+        wf_service = netsvc.LocalService("workflow")
+        for sale_id in ids:
+            wf_service.trg_delete(uid, 'sale.order', sale_id, cr)
+            wf_service.trg_create(uid, 'sale.order', sale_id, cr)
+        for order in self.pool.get('sale.order').browse(cr ,uid , ids ):
+            for line in order.order_line:
+                #print "line.......",line
+                self.pool.get('sale.order.line').write(cr ,uid ,[line.id] ,{'state':'draft'})
+        return True
+
+    def onchange_shop_id(self, cr, uid, ids, shop_id, pricelist_id=False,context=None):
+        print "shop_id.......",shop_id
+        print "pricelistid..............",pricelist_id
+        v = {}
+        if shop_id:
+            shop = self.pool.get('sale.shop').browse(cr, uid, shop_id, context=context)
+            print "shoppppppppppppppppp",shop.pricelist_id.id
+            if pricelist_id:
+                v['pricelist_id'] = pricelist_id
+            if not pricelist_id:
+                if shop.pricelist_id.id:
+                    v['pricelist_id'] = shop.pricelist_id.id
+        return {'value': v}
+
+#    Updating the pricelist on change of customer
+    def onchange_partner_id(self, cr, uid, ids, part, context=None):
+        partner = self.pool.get('res.partner').browse(cr, uid, part, context=context)
+        print "pricelist for customer.......",partner.property_product_pricelist.id
+        if not part:
+            return {'value': {'partner_invoice_id': False, 'partner_shipping_id': False,  'payment_term': False, 'fiscal_position': False,
+                             'client_order_ref': False , 'mmh_cust_type': False}}
+        res = super(sale_order , self).onchange_partner_id( cr, uid, ids, part, context=None)
+        res['value'].update({'client_order_ref':partner.ref , 'mmh_cust_type':partner.mmh_cust_type and partner.mmh_cust_type.id or False,'pricelist_id':partner.property_product_pricelist.id})
+        return res
+
+sale_order()

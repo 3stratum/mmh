@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_show_receiveables_payables" model="ir.ui.view">
+            <field name="name">view.show.receiveables.payables</field>
+            <field name="model">balance.receivable.payable</field>
+            <field name="arch" type="xml">
+                <form string="Balances/Outstanding Transactions" version="7.0">
+                    <group>
+                        <field name="invoice_type" readonly="1"/>
+                        <field name="partner_id" readonly="1"/>
+                        <field name="invoice_ids" colspan="4">
+                            <tree editable="bottom">
+                                <field name="partner_id" groups="base.group_user"/>
+                                <field name="date_invoice"/>
+                                <field name="number"/>
+                                <field name="name" invisible="1"/>
+                                <field name="journal_id" invisible="1"/>
+                                <field name="user_id"/>
+                                <field name="date_due"/>
+                                <field name="origin"/>
+                                <field name="amount_untaxed" sum="Untaxed Amount"/>
+                                <field name="amount_total" sum="Total Amount"/>
+                                <field name="residual" sum="Residual Amount"/>
+                                <field name="state"/>
+                                <field name="allocation_amount"/>
+
+                            </tree>
+                         </field>
+                    </group>
+                    <footer>
+                        <button name="assign_balances" string="Assign" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_show_receiveables_payables" model="ir.actions.act_window">
+            <field name="name">Show Balances</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">balance.receivable.payable</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

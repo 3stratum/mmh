@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/aim-lang_aim/!svn/ver/1/bista_authorize_net/wizard
+END
+customer_profile.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/aim-lang_aim/!svn/ver/1/bista_authorize_net/wizard/customer_profile.xml
+END
+new_profile.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/aim-lang_aim/!svn/ver/1/bista_authorize_net/wizard/new_profile.py
+END
+charge_customer.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/aim-lang_aim/!svn/ver/1/bista_authorize_net/wizard/charge_customer.py
+END
+profile_transaction.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/aim-lang_aim/!svn/ver/1/bista_authorize_net/wizard/profile_transaction.xml
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/aim-lang_aim/!svn/ver/1/bista_authorize_net/wizard/__init__.py
+END
+customer_profile.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/aim-lang_aim/!svn/ver/1/bista_authorize_net/wizard/customer_profile.py
+END
+new_profile.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/aim-lang_aim/!svn/ver/1/bista_authorize_net/wizard/new_profile.xml
+END
+charge_customer.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/aim-lang_aim/!svn/ver/1/bista_authorize_net/wizard/charge_customer.xml
+END
+profile_transaction.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/aim-lang_aim/!svn/ver/1/bista_authorize_net/wizard/profile_transaction.py
+END

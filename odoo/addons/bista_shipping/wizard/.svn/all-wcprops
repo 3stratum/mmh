@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/wizard
+END
+generate_shipping_quotes.py
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/wizard/generate_shipping_quotes.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/wizard/__init__.py
+END
+shipping_process.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/wizard/shipping_process.py
+END
+shipping_process_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/wizard/shipping_process_view.xml
+END
+generate_shipping_quotes.xml
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/wizard/generate_shipping_quotes.xml
+END

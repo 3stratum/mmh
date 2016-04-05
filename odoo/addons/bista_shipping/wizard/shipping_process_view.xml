@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_generate_packing_list_bista_adv" model="ir.ui.view">
+            <field name="name">Print.Sorted.Packing.List.Bista.Advance</field>
+            <field name="model">generate.packing.list</field>
+            <field name="inherit_id" ref="bista_batch_shipping.view_generate_packing_list"/>
+            <field name="arch" type="xml">
+                <!--<xpath expr="/form/group[3]/group/field[@name='carrier_id']" position="before">
+                    <field name="shipping_type" on_change="onchange_criteria(carrier_id, shop_id, start_date, end_date, shipping_type, context)"/>
+                </xpath>-->
+                <xpath expr="/form/group[3]/group" position="replace">
+                    <group>
+                             <field name="shipping_type" on_change="onchange_criteria(carrier_id, start_date, end_date, shipping_type, context)"/>
+                            <field name="carrier_id" on_change="onchange_criteria(carrier_id, start_date, end_date, shipping_type, context)"/>
+<!--                            <field name="shop_id" on_change="onchange_criteria(carrier_id, shop_id, start_date, end_date, shipping_type, context)"/>-->
+                            <field name="start_date" on_change="onchange_criteria(carrier_id, start_date, end_date, shipping_type,context)"/>
+                            <field name="end_date" on_change="onchange_criteria(carrier_id, start_date, end_date, shipping_type,context)"/>
+                            <field name="limit"/>
+                            <field name="count" readonly="1"/>
+                        </group>
+                </xpath>
+                 <xpath expr="/form/group[4]/button[@name='generate_picking_list']" position="after">
+                    <button type="object" name="generate_picking_list" string="Print Labels" context="{'print_labels': True}"/>
+                </xpath>
+                <xpath expr="/form/group[2]/field[@name='name']" position="replace">
+                    <!--<field name="name" widget="selection" domain="['|',('packed','=',False),('labels_generated','=',False)]" attrs="{'required':[('generate_new_pick', '=', False)]}"/>-->
+                    <field name="name" widget="selection" attrs="{'required':[('generate_new_pick', '=', False)]}"/>
+                </xpath>
+           </field>
+        </record>
+        
+    </data>
+</openerp>

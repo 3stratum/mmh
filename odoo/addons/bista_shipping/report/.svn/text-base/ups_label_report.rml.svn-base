@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<document filename="Shipping Labels.pdf">
+  <template pageSize="(400,430)" title="Test" author="Bista Solutions" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="0" y1="0" width="10.16cm" height="15.24cm"/>
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+      <blockTableStyle id="Table2">
+
+    </blockTableStyle>
+    <blockTableStyle id="Move_Line_Header">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="4,-1" stop="4,-1"/>
+    </blockTableStyle>
+
+
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_header_Centre" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="terp_default_Centre_6" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="6.0" leading="10" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_5" fontName="Helvetica" fontSize="5.0" leading="3" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_8" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="8.5" leading="8" alignment="LEFT" spaceBefore="1.0" spaceAfter="1.0"/>
+    <paraStyle name="terp_default_7" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="8.0" leading="1" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+
+  </stylesheet>
+  <story>
+
+       <para style="terp_header_Centre">Shipping Labels</para>
+    
+    <blockTable colWidths="350.0,150.0" repeatRows="1" style="Move_Line_Header">
+      <tr>
+        <td>
+          <para style="terp_default_5"></para>
+        </td>
+        <td>
+          <para style="terp_default_5">Batch Number: [[ data['batch'] ]]</para>
+          
+         </td>
+         </tr>
+         <tr>
+             <td>
+          <para style="terp_default_5"></para>
+        </td>
+        <td>
+          <para style="terp_default_5">PrintDate: [[ data['print_date'] ]]</para>
+          
+        </td>
+
+
+      </tr>
+    </blockTable>
+
+  <section>
+    <para style="terp_default_5">
+      <font color="white"> </font>
+    </para>
+   <para>[[ repeatIn(get_image(data['data']),'z') ]]</para>
+    <para style="terp_default_Centre_6"> Delivery Name : [[z.res_name]]</para>
+      <blockTable  style="Table2">
+      <tr>
+      <td>
+          
+        <!--<illustration width="0" height="0" borderStrokeColor="black" borderStrokeWidth="1">-->
+        <illustration width="0" height="0">
+              <rotate degrees="-90"/>
+              <!--<image  height="21.24cm" width="15.16cm">[[z.datas]]</image>-->
+              <image  height="12.24cm" width="9.16cm" color="black">[[z.datas]]</image>
+              
+          </illustration>
+       <nextFrame/>
+    <!--<para style="terp_default_5">[[ z.datas  or (removeParentNode('para')) ]]-->
+        <!--<nextFrame>[[ z.datas  or (removeParentNode('nextFrame')) ]]</nextFrame>-->  
+    <!--</para>-->
+    </td>
+
+</tr>
+</blockTable>
+</section>
+
+  </story>
+</document>

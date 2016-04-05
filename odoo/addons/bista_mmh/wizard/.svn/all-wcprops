@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/bista/!svn/ver/5674/MMH/code/bista_mmh/wizard
+END
+customer_wizard_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/bista/!svn/ver/5674/MMH/code/bista_mmh/wizard/customer_wizard_view.xml
+END
+statement_wizard.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/bista/!svn/ver/5674/MMH/code/bista_mmh/wizard/statement_wizard.py
+END
+statement_wizard_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/bista/!svn/ver/5674/MMH/code/bista_mmh/wizard/statement_wizard_view.xml
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/bista/!svn/ver/5674/MMH/code/bista_mmh/wizard/__init__.py
+END
+customer_wizard.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/bista/!svn/ver/5674/MMH/code/bista_mmh/wizard/customer_wizard.py
+END

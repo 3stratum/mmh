@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- wizard action on res.partner -->
+        <act_window id="customer_export_wizard_action"
+            name="Export csv file"
+            src_model="sale.order"
+            res_model="customer.export.wizard"
+            view_type="form" view_mode="form"
+            key2="client_action_multi" target="new"
+            />
+
+        <!-- wizard view -->
+        <record id="export_wizard_view" model="ir.ui.view">
+            <field name="name">Export CSV File</field>
+            <field name="model">customer.export.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Export CSV File" version="7.0">
+                    <group>
+                    <field name="main_host"></field>
+                    <field name="db"></field>
+                    <field name="uname"></field>
+                    <field name="pwd"></field>
+                    <field name="exportfile_csv"></field>
+                    </group>
+                    <footer>
+                        <button string="Export" name="export_data" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <menuitem id="menu_cust_export" name="Customer Export" parent="base.menu_base_partner"/>
+                <menuitem id="menu_customer_export" name="Customer export" parent="menu_cust_export" action="customer_export_wizard_action"/>
+
+    </data>
+</openerp>

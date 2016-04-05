@@ -1,0 +1,134 @@
+import time
+
+from openerp.osv import fields, osv
+from openerp.tools.translate import _
+
+class balance_receivable_payable(osv.osv_memory):
+
+    _name = "balance.receivable.payable"
+    _description = "Receivable and Payable Balances"
+
+    _columns = {
+        'line_ids': fields.many2many('account.move.line', 'account_move_balance_statement', 'balance_id', 'line_id', 'Invoices'),
+     }
+
+    def assign_balances(self, cr, uid, ids, context=None):
+
+        if context is None:
+            context = {}
+        data =  self.read(cr, uid, ids, context=context)[0]
+        line_ids = data['line_ids']
+        print "line ids",line_ids
+
+        if not line_ids:
+            return {'type': 'ir.actions.act_window_close'}
+
+        line_obj = self.pool.get('account.move.line')
+        statement_obj = self.pool.get('account.bank.statement')
+        statement_line_obj = self.pool.get('account.bank.statement.line')
+        currency_obj = self.pool.get('res.currency')
+        voucher_obj = self.pool.get('account.voucher')
+        voucher_line_obj = self.pool.get('account.voucher.line')
+        line_date = time.strftime('%Y-%m-%d')
+
+        st_line_obj = statement_line_obj.browse(cr, uid, context['active_id'])
+
+        statement = statement_obj.browse(cr, uid, st_line_obj.statement_id.id, context=context)
+
+        # for each selected move lines
+        st_line_amount = abs(st_line_obj.amount)
+        voucher_id = False
+        for line in line_obj.browse(cr, uid, line_ids, context=context):
+
+            ### patch of code written to skip the rest of the pending transactions
+            ### if the statement line amount reached zero or goes below that
+            print "st line amount",st_line_amount
+            if st_line_amount <= 0.0:
+                break
+
+            voucher_res = {}
+            ctx = context.copy()
+            #  take the date for computation of currency => use payment date
+            ctx['date'] = line_date
+            amount = 0.0
+
+            if line.debit > 0:
+                amount = line.debit
+            elif line.credit > 0:
+                amount = -line.credit
+
+            if line.amount_currency:
+                amount = currency_obj.compute(cr, uid, line.currency_id.id,
+                    statement.currency.id, line.amount_currency, context=ctx)
+            elif (line.invoice and line.invoice.currency_id.id <> statement.currency.id):
+                amount = currency_obj.compute(cr, uid, line.invoice.currency_id.id,
+                    statement.currency.id, amount, context=ctx)
+
+            context.update({'move_line_ids': [line.id],
+                            'invoice_id': line.invoice.id})
+            type = 'general'
+            ttype = amount < 0 and 'payment' or 'receipt'
+            sign = 1
+            if line.journal_id.type in ('sale', 'sale_refund'):
+                type = 'customer'
+                ttype = 'receipt'
+            elif line.journal_id.type in ('purchase', 'purhcase_refund'):
+                type = 'supplier'
+                ttype = 'payment'
+                sign = -1
+
+            if not voucher_id:
+                voucher_res = { 'type': ttype,
+                                'name': statement.name,
+                                'partner_id': line.partner_id.id,
+                                'journal_id': statement.journal_id.id,
+                                'account_id': statement.journal_id.default_credit_account_id.id,
+                                'company_id': statement.company_id.id,
+                                'currency_id': statement.currency.id,
+                                'date': statement.date,
+                                'amount': sign*st_line_obj.amount,
+        #                            'payment_rate': result['value']['payment_rate'],
+        #                            'payment_rate_currency_id': result['value']['payment_rate_currency_id'],
+                                'period_id':statement.period_id.id}
+
+                voucher_id = voucher_obj.create(cr, uid, voucher_res, context=context)
+
+
+            voucher_line_dict =  {}
+
+            amount_original = abs(line.amount_currency)
+            amount_unreconciled = abs(line.amount_residual_currency)
+
+            line_currency_id = line.currency_id and line.currency_id.id
+            voucher_line_dict = {
+                'name':line.move_id.name,
+                'type': line.credit and 'dr' or 'cr',
+                'move_line_id':line.id,
+                'account_id':line.account_id.id,
+                'amount_original': amount_original,
+                'amount' : st_line_amount >= amount_unreconciled and amount_unreconciled or st_line_amount,
+#                'amount': line.amount,
+                'date_original':line.date,
+                'date_due':line.date_maturity,
+                'amount_unreconciled': amount_unreconciled,
+                'currency_id': line_currency_id,
+            }
+            
+            st_line_amount -= amount_unreconciled
+
+            print "voucher line dict",voucher_line_dict
+
+            if voucher_line_dict['amount_unreconciled'] == voucher_line_dict['amount']:
+                voucher_line_dict['reconcile'] = True
+
+            if voucher_line_dict:
+                voucher_line_dict.update({'voucher_id': voucher_id})
+                voucher_line_obj.create(cr, uid, voucher_line_dict, context=context)
+            st_line_obj.write({'voucher_id' : voucher_id})
+        return {'type': 'ir.actions.act_window_close'}
+
+
+balance_receivable_payable()
+
+
+

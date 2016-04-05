@@ -1,0 +1,36 @@
+import time
+import openerp.addons.decimal_precision as dp
+from openerp import netsvc
+from openerp import pooler
+from openerp.osv import fields, osv, orm
+from openerp.tools.translate import _
+
+class account_invoice(osv.osv):
+    _inherit = "account.invoice"
+
+    _columns = {
+        'printed': fields.boolean('Printed',help='Inoice printed if checked .'),
+        'rep_add' : fields.boolean('Alternate Address For Delivery', states={'draft': [('readonly', False)]}),
+        'delivery_tracking_line': fields.one2many('delivery.tracking','invoice_id','Delivery Tracking Line'),
+        'alt_add':fields.many2one('res.partner','Alternate Address',help="Alternate Address for delivery"),
+        'picking_ids' : fields.one2many('stock.picking','invoice_id','Tracking Numbers'),
+        }
+    _defaults = {
+        'printed': False,
+        'rep_add': False,
+    }
+    def invoice_print(self, cr, uid, ids, context=None):
+        '''
+        This function prints the invoice and mark it as printed'''
+        assert len(ids) == 1, 'This option should only be used for a single id at a time.'
+#        for inv in self.browse(cr ,uid ,ids ):
+#            if inv.printed:
+#                raise osv.except_osv(_('Warning!'),
+#                            _('Please uncheck "Printed" to print the invoice,as it has already printed.'))
+        self.write(cr, uid, ids, {'printed': True}, context=context)
+        res = super(account_invoice , self).invoice_print( cr, uid, ids, context=None)
+        return res
+
+
+
+account_invoice()

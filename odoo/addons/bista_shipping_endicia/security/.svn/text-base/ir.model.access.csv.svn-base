@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_shipping_endicia_group_stock_manager","shipping.endicia","model_shipping_endicia","stock.group_stock_manager",1,1,1,1
+"access_shipping_endicia_shipping_manager","shipping.endicia","model_shipping_endicia","bista_shipping.grp_shipping_manager",1,1,1,1
+"access_shipping_endicia_manager","shipping.endicia","model_shipping_endicia","stock.group_stock_manager",1,1,1,1
+"access_shipping_response_manager","shipping.response.manager","model_shipping_response","stock.group_stock_manager",1,1,1,1

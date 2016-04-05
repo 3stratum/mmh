@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="grp_shipping_manager" model="res.groups">
+            <field name="name">Shipping Manager</field>
+        </record>
+    </data>
+</openerp>

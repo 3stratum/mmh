@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_list_management">
+            <field name="model">list.header</field>
+            <field name="arch" type="xml">
+                <form string="List Management" version="7.0">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <field name="generated_date" />
+                            <field name="active" />
+                        </group>
+                        <notebook>
+                            <page string="Items">
+                                <field name="item_ids" colspan="4" nolabel="1">
+                                    <tree string="Items" editable="bottom">
+                                        <field name="partner_id" domain="['|', ('customer', '=', True), ('supplier', '=', True)]" />
+                                    </tree>
+                                    <form string="Items">
+                                        <field name="partner_id" domain="['|', ('customer', '=', True), ('supplier', '=', True)]" />
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_list_management_tree">
+            <field name="model">list.header</field>
+            <field name="arch" type="xml">
+                <tree string="List Management">
+                    <field name="name" />
+                    <field name="generated_date" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_list_management">
+           <field name="name">Lists</field>
+           <field name="type">ir.actions.act_window</field>
+           <field name="res_model">list.header</field>
+           <field name="view_type">form</field>
+           <field name="view_mode">tree,form</field>
+           <field name="help" type="html">
+             <p class="oe_view_nocontent_create">
+               Click to add a new list.
+             </p>
+           </field>
+        </record>
+
+        <menuitem name="List Management" id="menu_list_management_root" parent="base.marketing_menu" sequence="50" />
+
+        <menuitem id="menu_list_management" action="action_view_list_management" parent="menu_list_management_root" sequence="5" />
+    </data>
+</openerp>

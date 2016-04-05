@@ -1,0 +1,100 @@
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+from openerp.osv import osv, fields
+from openerp import tools
+from openerp import netsvc
+import openerp.addons.decimal_precision as dp
+from openerp.tools.translate import _
+
+# Add Class and Origin to Customer Sales Order.
+class purchase_order_line(osv.osv):
+    _inherit = "purchase.order.line"
+    _columns={
+            'total_price_unit': fields.float('Total Price', digits_compute= dp.get_precision('Product Price'),
+            help='To input total price of product and calculate unit price for product.'),
+        }
+
+#        Function to automatically fetch the unit price on entring the total price and quantity
+    def onchange_total_price_unit(self, cr ,uid ,ids ,product_qty, total_price_unit ,context=None):
+        """
+        onchange handler of total_price_unit.
+        It calculate unit price for product from Total price.
+        """
+        if context is None:
+            context = {}
+
+        res= {}
+        if total_price_unit > 0 and product_qty > 0:
+            res = {'value': {'price_unit': (float(total_price_unit) /float(product_qty)) or 0.0, }}
+        return res
+#    Updating The total price on chnage of quantity and unit price
+    def onchange_price_unit(self, cr ,uid ,ids ,product_qty, price_unit=False ,total_price_unit=False,context=None):
+        """
+        onchange handler of total_price_unit.
+        It calculate unit price for product from Total price.
+        """
+        if context is None:
+            context = {}
+        res= {}
+        if price_unit:
+            if price_unit > 0 and product_qty > 0:
+                res = {'value': {'total_price_unit': (price_unit * product_qty) or 0.0, }}
+        if total_price_unit:
+            if total_price_unit > 0 and product_qty > 0:
+                res = {'value': {'price_unit': (float(total_price_unit) /float(product_qty)) or 0.0, }}
+        return res
+
+#Updating different values on chamge of product unit of measue
+
+    def onchange_product_uom(self, cr, uid, ids, pricelist_id, product_id, qty, uom_id,
+            partner_id, date_order=False, fiscal_position_id=False, date_planned=False,
+            name=False, price_unit=False, context=None ,total_price_unit = 0.0):
+        """
+        onchange handler of product_uom.
+        """
+        if context is None:
+            context = {}
+        if not uom_id:
+            return {'value': {'price_unit': price_unit or 0.0, 'name': name or '', 'product_uom' : uom_id or False}}
+        context = dict(context, purchase_uom_check=True)
+        return self.onchange_product_id(cr, uid, ids, pricelist_id, product_id, qty, uom_id,
+            partner_id, date_order=date_order, fiscal_position_id=fiscal_position_id, date_planned=date_planned,
+            name=name, price_unit=price_unit, context=context ,total_price_unit = 0.0)
+
+#Updating the total price on change of product_id
+    def onchange_product_id(self, cr, uid, ids, pricelist_id, product_id, qty, uom_id,
+            partner_id, date_order=False, fiscal_position_id=False, date_planned=False,
+            name=False, price_unit=False, context=None ,total_price_unit = 0.0):
+        """
+        onchange handler of product_id.
+        """
+        if context is None:
+            context = {}
+        res = {}
+        res = super(purchase_order_line , self).onchange_product_id( cr, uid, ids, pricelist_id, product_id, qty, uom_id,
+            partner_id, date_order=False, fiscal_position_id=False, date_planned=False,
+            name=False, price_unit=False, context=None)
+
+        res.update({'total_price_unit': (qty*price_unit) or 0.0})
+
+        return res
+
+purchase_order_line()

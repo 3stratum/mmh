@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_grp_shpping_rights","delivery_tracking_grp_shpping_rights","model_delivery_tracking","bista_mmh.grp_shipping_rights",1,1,1,1
+
+

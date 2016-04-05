@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+    <!-- form -->
+        <record model="ir.ui.view" id="mmh_theme_view">
+            <field name="name">Theme Settings</field>
+            <field name="model">mmh_theme.mmh_theme</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Theme Settings">
+                    <group string="Login Screen">
+                    <field name="show_database_selection"/>
+                    <field name="show_manage_databases"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- window action -->       
+        <record model="ir.actions.act_window" id="mmh_theme_action">
+            <field name="name">MMH Theme</field>
+            <field name="res_model">mmh_theme.mmh_theme</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name='view_id' ref='mmh_theme_view'/>
+        </record>
+        <!-- menu insertion -->       
+        <menuitem id="mmh_theme" name="MMH Theme" parent="base.menu_administration" action="mmh_theme_action"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+       <record model="ir.ui.view" id="view_list_management_mmh_tasks">
+            <field name="model">list.header</field>
+            <field name="inherit_id" ref="marketing_list_management.view_list_management" />
+            <field name="arch" type="xml">
+                <field name="generated_date" position="before">
+                    <field name="content_type" />
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_list_management_tree_mmh_tasks">
+            <field name="model">list.header</field>
+            <field name="inherit_id" ref="marketing_list_management.view_list_management_tree" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="content_type" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

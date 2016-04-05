@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/wsdl
+END
+ShipService_v7.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/wsdl/ShipService_v7.wsdl
+END
+CourierDispatchService_v3.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/wsdl/CourierDispatchService_v3.wsdl
+END
+RateService_v10.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/wsdl/RateService_v10.wsdl
+END
+ReturnTagService_v1.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/wsdl/ReturnTagService_v1.wsdl
+END
+ShipService_v9.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/wsdl/ShipService_v9.wsdl
+END
+PackageMovementInformationService_v4.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/wsdl/PackageMovementInformationService_v4.wsdl
+END
+AddressValidationService_v2.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/wsdl/AddressValidationService_v2.wsdl
+END
+RateService_v8.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/wsdl/RateService_v8.wsdl
+END
+CloseService_v2.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/wsdl/CloseService_v2.wsdl
+END
+TrackService_v4.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/wsdl/TrackService_v4.wsdl
+END

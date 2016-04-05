@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Add Origin, Start Date and Customer Type to customer form view -->
+        <record id="view_res_partner_form_mmh" model="ir.ui.view">
+            <field name="name">res.partner.form.mmh</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <field name="website" position="after">
+                    <field name="mmh_origin" required='1'/> 
+                    <field name="mmh_start_date"/>
+                </field>
+                <field name="function" position="replace">
+                    <field name="mmh_cust_type" required='1'/>
+                </field>
+                <page string='Contacts' position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                </page>
+           </field>
+        </record>
+        
+         <!-- Add Customer Type to Customer Tree View -->
+        <record id="view_res_partner_tree_mmh" model="ir.ui.view">
+            <field name="name">res.partner.tree.mmh</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Contacts">
+                    <field name="mmh_cust_type"/>
+                    <field name="category_id" widget="many2many_tags" />
+                    <field name="ref"/>
+                    <field name="mmh_origin"/>
+                    <field name="mmh_start_date"/>
+
+                </tree>
+           </field>
+        </record>
+	</data>
+</openerp>

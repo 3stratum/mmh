@@ -1,0 +1,146 @@
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
+import time
+from openerp import netsvc
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+
+class mrp_production(osv.osv):
+    _inherit='mrp.production'
+
+    def _make_production_line_procurement(self, cr, uid, production_line, shipment_move_id, context=None):
+        wf_service = netsvc.LocalService("workflow")
+        procurement_order = self.pool.get('procurement.order')
+        production = production_line.production_id
+        location_id = production.location_src_id.id
+        date_planned = production.date_planned
+        procurement_name = (production.origin or '').split(':')[0] + ':' + production.name
+        procurement_id = procurement_order.create(cr, uid, {
+                    'name': procurement_name,
+                    'origin': procurement_name,
+                    'date_planned': date_planned,
+                    'product_id': production_line.product_id.id,
+                    'product_qty': production_line.product_qty,
+                    'product_uom': production_line.product_uom.id,
+                    'product_uos_qty': production_line.product_uos and production_line.product_qty or False,
+                    'product_uos': production_line.product_uos and production_line.product_uos.id or False,
+                    'location_id': location_id,
+                    'procure_method': production_line.product_id.procure_method,
+                    'move_id': shipment_move_id,
+                    'company_id': production.company_id.id,
+                })
+        self._hook_create_post_procurement(cr, uid, production, procurement_id, context=context)
+        return procurement_id
+
+        
+    def _check_boolean(self, cr, uid, ids, field_name, args, context={}):
+        '''
+          This function checks if even a single product is consumed in MO ,
+          then it sets consumed field and makes reference field readonly.
+        '''
+        res = {}
+        for production in self.browse(cr, uid, ids, context=context):
+            moves = [move for move in production.move_lines2]
+            if len(moves) != 0 and production.state != 'draft':
+                res[production.id] = True
+            else:
+                res[production.id] = False
+        return res
+
+#    updating the raw material loaction on chnage of product_id in MO
+    def product_id_change(self, cr, uid, ids, product_id, context=None):
+        product_obj=self.pool.get('product.product')
+        prd_brw=product_obj.browse(cr,uid,product_id).location.id
+        if prd_brw:
+            return {'value': {
+                'location_src_id': prd_brw
+            }}
+        else: 
+            return super(mrp_production, self).product_id_change(cr, uid, ids,product_id, context=context)
+
+#    changing the raw material loaction as output
+    def _src_id_default(self, cr, uid, ids, context=None):
+        try:
+            location_model, location_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'stock', 'stock_location_stock')
+            self.pool.get('stock.location').check_access_rule(cr, uid, [location_id], 'read', context=context)
+        except (orm.except_orm, ValueError):
+            location_id = False
+        return location_id
+
+#    changing the finished product loaction as output
+    def _dest_id_default(self, cr, uid, ids, context=None):
+        try:
+            location_model, location_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'stock', 'stock_location_stock')
+            self.pool.get('stock.location').check_access_rule(cr, uid, [location_id], 'read', context=context)
+        except (orm.except_orm, ValueError):
+            location_id = False
+        return location_id
+    _columns={
+        'name': fields.char('Reference', size=64, required=True, readonly=True, ),#states={'draft': [('readonly', False)],'ready': [('readonly', False)]}
+        'cnfm_date':fields.date('Date'),
+        'consumed': fields.function(
+            _check_boolean, string='consumed?',
+            type='boolean',
+            help="indicates if product to consume have been consumed\
+                or canceled"),
+       'location_src_id': fields.many2one('stock.location', 'Raw Materials Location', required=True,
+            readonly=True, states={'draft':[('readonly',False)]},
+            help="Location where the system will look for components."),
+       'location_dest_id': fields.many2one('stock.location', 'Finished Products Location', required=True,
+            readonly=True, states={'draft':[('readonly',False)]},
+            help="Location where the system will stock the finished products."),
+        
+    }
+    _defaults={
+            'consumed':False,
+            'location_src_id': _src_id_default,
+            'location_dest_id': _dest_id_default
+        }
+    def action_confirm(self, cr, uid, ids, context=None):
+        '''
+         This function writes confirmation date in MO.
+        '''
+        self.write(cr,uid,ids,{'cnfm_date': time.strftime(DEFAULT_SERVER_DATE_FORMAT)})
+        return super(mrp_production, self).action_confirm(cr, uid, ids,context)
+
+   
+
+    def action_cancel(self, cr, uid, ids, context=None):
+        """ Cancels work order if production order is canceled.
+        make return moves for consumed products in manufacturing order.
+        @return: Super method
+        """#action_cancel
+        print "cancel production call........"
+        obj = self.browse(cr, uid, ids,context=context)[0]
+        wf_service = netsvc.LocalService("workflow")
+        picking_obj=self.pool.get('stock.picking')
+        move_obj = self.pool.get('stock.move')
+        pick_id=obj.picking_id
+        curr_state=obj.state
+        if curr_state=='confirmed':
+             
+            val = picking_obj.copy(cr, uid, {'type': 'in' })
+        for move in obj.move_lines2:
+
+            move.write({'picking_id': picking_id}, context=context)
+        return picking_id
+
+            
+        
+        for manuf in self.browse(cr, uid, ids, context=context):
+            #print "manuf.....",manuf
+            for move_line in obj.move_lines2:
+                #print "move_line..",move_line
+                dict ={}
+                dict={
+                'location_id':move_line.location_dest_id and move_line.location_dest_id.id or False,
+                'location_dest_id':move_line.location_id and move_line.location_id.id or False,
+                'origin':move_line.origin or False,
+                'state':'done',
+                }
+                res = move_obj.copy(cr ,uid , move_line.id , dict , context=context)
+                #print "res...........",res
+            #self.pool.get('stock.move').action_cancel(cr, uid, [x.id for x in manuf.move_lines2], context=context)
+
+        return super(mrp_production,self).action_cancel(cr,uid,ids,context=context)
+
+mrp_production()

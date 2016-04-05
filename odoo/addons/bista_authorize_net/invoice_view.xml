@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+        <record id="view_invoice_authorize_net_inherited_view" model="ir.ui.view">
+            <field name="name">view.invoice.authorize.net.inherited.view</field>
+            <field name="model">account.invoice</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="/form/sheet/notebook" position="inside">
+                         <page string="Authorize.Net Payment" >
+                             <group colspan="3" col="6" >
+                            <field name="auth_transaction_id" />
+                            <field name="authorization_code"/>
+                            <field name="customer_payment_profile_id"/>
+                            <field name="auth_respmsg" />
+                            <field name="amount_charged"/>
+                            <field name="capture_status" invisible='1'/>
+                            <!--<button name="capture_payment" string="Capture Payment" type="object" icon="gtk-execute" attrs="{'invisible': ['|','|',('capture_status','=','captured'),('authorization_code','=',False),('state','=','paid')]}"/>-->
+                           </group>
+                     </page>
+                </xpath>
+               <!-- <xpath expr="/form/notebook/page[@string='Invoice']/group[2]/group[2]/button[@name='invoice_open']" position = "attributes">
+                                <attribute name="string">Validate and Capture</attribute>
+                                <attribute name="attrs">{'invisible': ['|',('authorization_code', '=', ''),('capture_status','=','captured')]}</attribute>
+                                <attribute name="states">draft,proforma2</attribute>
+                            </xpath>-->
+                </data>
+            </field>
+        </record>
+
+
+        
+    </data>
+</openerp>
+

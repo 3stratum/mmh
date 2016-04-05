@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Add Class & Discount Code to Sales Order form view -->
+        <record id="view_sale_order_form_mmh" model="ir.ui.view">
+            <field name="name">sale.order.form.mmh</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="mmh_class" required='1' options="{'create': false,  'create_edit': false}"/>
+                    <field name="mmh_disc_code" required='1' options="{'create': false,  'create_edit': false}"/>
+                </field>
+                <field name="client_order_ref" position="after">
+                    <field name="mmh_cust_type" options="{'create': false,  'create_edit': false}"/>
+                </field>
+           </field>
+        </record>
+	</data>
+</openerp>

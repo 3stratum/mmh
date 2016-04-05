@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_list_management_cron">
+            <field name="model">list.header</field>
+            <field name="inherit_id" ref="marketing_list_management.view_list_management" />
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Scheduled Actions">
+                        <group col="4">
+                            <field name="interval_number"/>
+                            <field name="interval_type"/>
+                            <newline/>
+                            <field name="nextcall"/>
+                            <field name="numbercall"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>

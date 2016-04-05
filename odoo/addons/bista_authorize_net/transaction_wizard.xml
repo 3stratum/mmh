@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+ <!--       <act_window name="Authorize.Net Transactions"
+            res_model="profile.transaction"
+            src_model="sale.order"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="authorize_net_transaction"/>-->
+        <act_window name="Authorize.Net Customer Profile"
+            res_model="customer.profile.payment.profile"
+            src_model="res.partner"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="authorize_net_customer_profile"/>
+        <act_window name="Authorize.Net Transactions"
+            res_model="profile.transaction"
+            src_model="account.invoice"
+            view_mode="form"
+            target="new"
+            id="authorize_net_transaction_invoice" />
+        <act_window name="Authorize.Net Transactions"
+            res_model="profile.transaction"
+            src_model="account.voucher"
+            view_mode="form"
+            target="new"
+            id="authorize_net_transaction_voucher" />
+</data></openerp>

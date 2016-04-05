@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!--views for fedex packaging type  -->
+        <record id="view_shipping_package_type_fedex_tree" model="ir.ui.view">
+            <field name="name">view.shipping.package.type.fedex.tree</field>
+            <field name="model">shipping.package.type.fedex</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Packaging Type">
+                    <field name="name"/>
+                    <field name="length"/>
+                    <field name="width"/>
+                    <field name="height"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_shipping_package_type_fedex_form" model="ir.ui.view">
+            <field name="name">view.shipping.package.type.fedex.form</field>
+            <field name="model">shipping.package.type.fedex</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Packaging Type">
+                    <group colspan="6">
+                        <field name="name"/>
+                        <field name="length"/>
+                        <field name="width"/>
+                        <field name="height"/>
+                    </group>                    
+                </form>
+            </field>
+        </record>
+        <!--action for fedex packaging type  -->
+        <record id="action_shipping_package_type_fedex_form" model="ir.actions.act_window">
+            <field name="name">Packaging Type FedEX</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipping.package.type.fedex</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_shipping_package_type_fedex_tree"/>
+        </record>
+
+        <!--views for ups packaging type  -->
+        <record id="view_shipping_package_type_ups_tree" model="ir.ui.view">
+            <field name="name">view.shipping.package.type.ups.tree</field>
+            <field name="model">shipping.package.type.ups</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Packaging Type">
+                    <field name="name"/>
+                    <field name="length"/>
+                    <field name="width"/>
+                    <field name="height"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_shipping_package_type_ups_form" model="ir.ui.view">
+            <field name="name">view.shipping.package.type.ups.form</field>
+            <field name="model">shipping.package.type.ups</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Packaging Type">
+                    <group colspan="6">
+                        <field name="name"/>
+                        <field name="length"/>
+                        <field name="width"/>
+                        <field name="height"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!--action for ups packaging type  -->
+        <record id="action_shipping_package_type_ups_form" model="ir.actions.act_window">
+            <field name="name">Packaging Type UPS</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipping.package.type.ups</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_shipping_package_type_ups_tree"/>
+        </record>
+
+        <!--menus for packaging type object-->
+        <!--menu for FedEX packaging type  -->
+        <!--<menuitem id="menu_shipping_package_type" parent="base.menu_base_partner" name="Shipping Packaging Type"/>-->
+        <!--<menuitem action="action_shipping_package_type_fedex_form" id="menu_action_shipping_package_type_fedex" parent="menu_shipping_package_type"/>-->
+        <!--menu for UPS packaging type-->
+        <!--<menuitem action="action_shipping_package_type_ups_form" id="menu_action_shipping_package_type_ups" parent="menu_shipping_package_type"/>-->
+    </data>
+</openerp>

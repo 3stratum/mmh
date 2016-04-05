@@ -1,0 +1,2 @@
+Copy fedex folder to /usr/local/lib/python2.6/dist-packages and install suds. To install suds run "easy_install suds" command in terminal.
+After that cofigure all the shipping services in OpenERP.

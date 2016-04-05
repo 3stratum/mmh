@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/services
+END
+rate_service.py
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/services/rate_service.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/services/__init__.py
+END
+address_validation_service.py
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/services/address_validation_service.py
+END
+ship_service.py
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/services/ship_service.py
+END
+track_service.py
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/services/track_service.py
+END
+package_movement.py
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/bista/!svn/ver/5816/MMH/code/bista_shipping/dependencies/fedex/services/package_movement.py
+END

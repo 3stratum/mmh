@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_list_header,access_list_header,model_list_header,marketing.group_marketing_user,1,1,1,0
+access_list_header,access_list_header,model_list_header,marketing.group_marketing_manager,1,1,1,1
+access_list_item,access_list_item,model_list_item,marketing.group_marketing_user,1,1,1,0
+access_list_item,access_list_item,model_list_item,marketing.group_marketing_manager,1,1,1,1

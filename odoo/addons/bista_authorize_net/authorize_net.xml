@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<openerp>
+    <data>
+        <!--<menuitem name="Authorize.Net" id="menu_authorize_net" parent="base.menu_config"/>-->
+        
+        <record id="view_authorize_net_form" model="ir.ui.view">
+            <field name="name">view.authorize.net.form</field>
+            <field name="model">authorize.net.config</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Authorize.Net Configuration" version="7.0">
+                    <group>
+                        <field name="api_username"/>
+                        <field name="transaction_key"/>
+                        <field name="test_production" required="True" on_change="onchange_test_production(test_production,context)"/>
+                        <field name="server_url"/>
+                        <button name="get_profile_ids" string="Get Profile IDS" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+         <record model="ir.ui.view" id="view_authorize_net_tree">
+            <field name="name">view.authorize.net.tree</field>
+            <field name="model">authorize.net.config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Authorize.Net Configuration">
+                    <field name="api_username"/>
+                        <field name="transaction_key"/>
+                        <field name="server_url" required="True"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_authorize_net_information">
+            <field name="name">Authorize.Net Configuration</field>
+            <field name="res_model">authorize.net.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+	<menuitem name="Authorize.Net Credetials" action = "action_authorize_net_information" id="menu_authorize_net_credentials" parent="base.menu_config"/>
+    </data>
+</openerp>
